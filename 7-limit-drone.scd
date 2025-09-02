@@ -8,7 +8,7 @@ What I would like to do with this: Schedule a series of notes to be sent to this
 2. Pitch frequency
 3. Attack time
 4. Decay time
-5. Sustain volume
+5. Amplitude
 6. Filter frequency
 7. Envelope for filter resonance
 8. Pan position
@@ -19,11 +19,12 @@ What I would like to do with this: Schedule a series of notes to be sent to this
 SynthDef(
 	\drone,
 	{
-	arg out = 0, freq = 440, amp = 0.1, atk = 10, sus = 10, rel = 10;
+	arg out = [0, 1], freq = 440, amp = 0.1, atk = 10, sus = 10, rel = 10, pan = 0.0;
 	var env = Env.new(levels: [0, 1, 1, 0], times: [atk, sus, rel], curve: \sine);
 	var snd = LFTri.ar(freq, mul: amp);
 	snd = MoogLadder.ar(in: snd, ffreq: (freq * 4), res: 0.9);
 	snd = snd * EnvGen.kr(env, doneAction: 2);
+	snd = Pan2.ar(snd, pan);
 	Out.ar(out, snd);
 	}
 ).add;
@@ -48,11 +49,8 @@ majorSeventh = root * (15/8),
 octave = root * 2;
 
 // Notes to test instrument
-Synth.new(\drone, [\freq, root, \atk, 5, \sus, 120, \rel, 20, \amp, 0.5]);
-Synth.new(\drone, [\freq, perfectFifth, \atk, 10, \sus, 120, \rel, 15, \amp, 0.5]);
-Synth.new(\drone, [\freq, minorSeventh, \atk, 15, \sus, 120, \rel, 10, \amp, 0.5]);
-Synth.new(\drone, [\freq, octave, \atk, 20, \sus, 120, \rel, 5, \amp, 0.5]);
+Synth.new(\drone, [\freq, root, \atk, 5, \sus, 120, \rel, 20, \amp, 0.5, \pan, -0.75]);
+Synth.new(\drone, [\freq, perfectFifth, \atk, 10, \sus, 120, \rel, 15, \amp, 0.5, \pan, 0.75]);
+Synth.new(\drone, [\freq, minorSeventh, \atk, 15, \sus, 120, \rel, 10, \amp, 0.5, \pan, -0.5]);
+Synth.new(\drone, [\freq, octave, \atk, 20, \sus, 120, \rel, 5, \amp, 0.5, \pan, 0.5]);
 )
-
-
-
