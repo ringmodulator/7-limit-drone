@@ -49,8 +49,8 @@ majorSeventh = root * (15/8),
 octave = root * 2;
 
 // Notes to test instrument
-Synth.new(\drone, [\freq, root, \ffreq, (root * 4), \atk, 5, \sus, 120, \rel, 20, \amp, 0.5, \pan, -0.75]);
-Synth.new(\drone, [\freq, perfectFifth, \ffreq, (perfectFifth * 4), \atk, 10, \sus, 120, \rel, 15, \amp, 0.5, \pan, 0.75]);
-Synth.new(\drone, [\freq, minorSeventh, \ffreq, (minorSeventh * 4), \atk, 15, \sus, 120, \rel, 10, \amp, 0.5, \pan, -0.5]);
-Synth.new(\drone, [\freq, octave, \ffreq, (octave * 4), \atk, 20, \sus, 120, \rel, 5, \amp, 0.5, \pan, 0.5]);
+Synth.new(\drone, [\freq, root, \ffreq, (root * 4), \atk, 5, \sus, 60, \rel, 20, \amp, 0.5, \pan, -0.75]);
+Synth.new(\drone, [\freq, perfectFifth, \ffreq, (perfectFifth * 4), \atk, 10, \sus, 60, \rel, 15, \amp, 0.5, \pan, 0.75]);
+Synth.new(\drone, [\freq, minorSeventh, \ffreq, (minorSeventh * 4), \atk, 15, \sus, 60, \rel, 10, \amp, 0.5, \pan, -0.5]);
+Synth.new(\drone, [\freq, octave, \ffreq, (octave * 4), \atk, 20, \sus, 60, \rel, 5, \amp, 0.5, \pan, 0.5]);
 )
