@@ -1,29 +1,39 @@
 s.boot;
 
-/*
-
-What I would like to do with this: Schedule a series of notes to be sent to this synth with the following parameters, so that I can create a drone composition with it:
-
-1. Time note is triggered
-2. Pitch frequency
-3. Attack time
-4. Decay time
-5. Amplitude
-6. Filter frequency
-7. Envelope for filter resonance
-8. Pan position
-
-*/
-
 (
 SynthDef(
 	\drone,
 	{
-	arg out = [0, 1], freq = 440, ffreq = 880, amp = 0.1, atk = 10, sus = 10, rel = 10, pan = 0.0;
-	var env = Env.new(levels: [0, 1, 1, 0], times: [atk, sus, rel], curve: \sine);
+	|
+		out = 0,
+		freq = 440,
+		ffreq = 880,
+		amp = 0.1,
+		atk = 10,
+		sus = 10,
+		gate = 1,
+		rel = 10,
+		pan = 0.0
+	|
+	var env = Env.asr(atk, 1, rel, \sine);
 	var snd = LFTri.ar(freq, mul: amp);
-	snd = MoogLadder.ar(in: snd, ffreq: ffreq, res: 0.9);
-	snd = snd * EnvGen.kr(env, doneAction: 2);
+	var maxNodes = 16;
+	var resEnv = Env(
+		Array.fill(maxNodes, 1),
+		Array.fill(maxNodes - 1, 1 / maxNodes),
+		Array.fill(maxNodes - 1, -4),
+		maxNodes - 2,
+		nil
+	); // Here we set up a default envelope with 16 nodes
+	// We need to do this so that the server reserves enough space for us
+	// to send it new envelopes.
+	var resEnvGen = EnvGen.kr(
+		\resInputEnv.kr(resEnv.asArray), // When the synth is running, we can use
+		// synthVariable.set(\resInputEnv, someEnv);
+		gate
+	);
+	snd = MoogLadder.ar(in: snd, ffreq: ffreq, res: resEnvGen);
+	snd = snd * EnvGen.kr(env, gate, doneAction: Done.freeSelf);
 	snd = Pan2.ar(snd, pan);
 	Out.ar(out, snd);
 	}
@@ -32,7 +42,7 @@ SynthDef(
 
 
 (
-// Calculate 7-limit just chromatic pitches based on root frequency
+// Calculate note frequencies
 var root = 124,
 minorSecond = root * (15/14),
 majorSecond = root * (8/7),
@@ -46,11 +56,57 @@ minorSixth = root * (8/5),
 majorSixth = root * (5/3),
 minorSeventh = root * (7/4),
 majorSeventh = root * (15/8),
-octave = root * 2;
+octave = root * 2,
 
-// Notes to test instrument
-Synth.new(\drone, [\freq, root, \ffreq, (root * 4), \atk, 5, \sus, 60, \rel, 20, \amp, 0.5, \pan, -0.75]);
-Synth.new(\drone, [\freq, perfectFifth, \ffreq, (perfectFifth * 4), \atk, 10, \sus, 60, \rel, 15, \amp, 0.5, \pan, 0.75]);
-Synth.new(\drone, [\freq, minorSeventh, \ffreq, (minorSeventh * 4), \atk, 15, \sus, 60, \rel, 10, \amp, 0.5, \pan, -0.5]);
-Synth.new(\drone, [\freq, octave, \ffreq, (octave * 4), \atk, 20, \sus, 60, \rel, 5, \amp, 0.5, \pan, 0.5]);
+// In these next few variables, we'll make a simple "score"
+
+freqs = [ // An array of arrays, so we can have chords
+	[minorSeventh, (minorSeventh * 2) + 1],
+	[root / 2, root + 1],
+	[perfectFifth, minorSeventh],
+	[root / 2, octave + 3]
+],
+ffreqs = [ // filter frequencies
+    [minorSeventh * 4, minorSeventh * 8],
+	[root * 8, root * 8],
+	[minorSeventh * 4, perfectFifth * 4],
+	[root * 4, (octave * 4) + 1]
+],
+// How long to sustain a given chord
+sustainTimes = [
+	120,
+	120,
+	120,
+	120
+],
+// How long to wait until the next chord is played
+waitTimes = [60, 30, 15];
+
+r = Routine({
+	// loop through the frequency chords in our score
+	// A: I'd rather loop through full sets of parameters for individual notes - look back at the solution for the E-A drone
+	freqs.do({|fs, c|
+		var synthGroup = Group(s), // create a group to play our synths on
+		ffs = ffreqs.wrapAt(c), // get the ffreqs at the same index as the freqs (wrap if we have more freqs than ffreqs)
+		synths = fs.collect({|f, i| // collect all of the frequencies in a given chord. A: Need to understand collect better
+			// play a synth for each frequency. This needs pan position and amplitude added back in.
+			Synth(\drone, [
+				\freq, f,
+				\ffreq, ffs.wrapAt(i), // getting individual ffreqs
+				\atk, 10,
+				\rel, 10,
+				\resInputEnv, Env([0, 1.1, 0.8], [60, 60]) // we can set the envelope because of how we constructed the SynthDef, using a default value with 16 nodes
+			], synthGroup); // synthGroup is the target, so each synth will play on the Group we just created
+		});
+		// sustain and release
+		{
+			sustainTimes.wrapAt(c).wait; // Sustain synths for the sustain time
+			synthGroup.release; // Release synths
+		}.fork; // .fork is a shortcut for creating a Routine and playing it immediately. It is the same as writing Routine({ "I am in the routine".postln; }).play;
+		waitTimes.wrapAt(c).wait; // Wait to play the next note or chord in the score.
+	});
+});
 )
+
+// Play the routine
+r.play
