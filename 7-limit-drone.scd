@@ -94,15 +94,17 @@ r = Routine({
 	freqs.do({|fs, c|
 		var synthGroup = Group(s), // create a group to play our synths on
 		ffs = ffreqs.wrapAt(c), // get the ffreqs at the same index as the freqs (wrap if we have more freqs than ffreqs)
-		pan = panPositions.wrapAt(c), // get pan positions for notes
+		pan = panPositions.wrapAt(c), // get pan positions
+		atk = attackTimes.wrapAt(c), // get attack times
+		rel = releaseTimes.wrapAt(c), // get release times
 		synths = fs.collect({|f, i| // collect all of the frequencies in a given chord. A: Need to understand collect better
-			// play a synth for each frequency. This needs pan position and amplitude added back in.
+			// play a synth for each frequency.
 			Synth(\drone, [
 				\freq, f,
 				\ffreq, ffs.wrapAt(i), // getting individual ffreqs
 				\pan, pan.wrapAt(i), // get pan positions
-				\atk, attackTimes.wrapAt(i), // get attack times - this doesn't seem to work
-				\rel, releaseTimes.wrapAt(i), // get release times - this doesn't seem to work
+				\atk, atk.wrapAt(i), // get attack times
+				\rel, rel.wrapAt(i), // get release times
 				\resInputEnv, Env([0, 1.1, 0.8], [60, 60]) // we can set the envelope because of how we constructed the SynthDef, using a default value with 16 nodes
 			], synthGroup); // synthGroup is the target, so each synth will play on the Group we just created
 		});
