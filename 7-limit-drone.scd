@@ -16,7 +16,7 @@ SynthDef(
 		pan = 0.0
 	|
 	var env = Env.asr(atk, 1, rel, \sine);
-	var snd = LFTri.ar(freq, mul: amp);
+	var snd = LFTri.ar(freq);
 	var maxNodes = 16;
 	var resEnv = Env(
 		Array.fill(maxNodes, 1),
@@ -33,7 +33,7 @@ SynthDef(
 		gate
 	);
 	snd = MoogLadder.ar(in: snd, ffreq: ffreq, res: resEnvGen);
-	snd = snd * EnvGen.kr(env, gate, doneAction: Done.freeSelf);
+	snd = snd * EnvGen.kr(env, gate, doneAction: Done.freeSelf) * amp;
 	snd = Pan2.ar(snd, pan);
 	Out.ar(out, snd);
 	}
