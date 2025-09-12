@@ -75,7 +75,7 @@ ffreqs = [ // filter frequencies
 ],
 
 // Amplitudes
-amplitudes = [[0.2, 0.2],[0.5, 0.5],[0.1, 0.1],[0.3, 0.3]],
+amplitudes = [[0.5, 0.5],[0.5, 0.5],[0.1, 0.1],[0.3, 0.3]],
 
 // Pan positions
 panPositions = [[-1.0, 1.0], [-0.5, 0.5], [-0.5, 0.5], [-1.0, 1.0]],
