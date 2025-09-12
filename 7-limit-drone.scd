@@ -77,15 +77,20 @@ ffreqs = [ // filter frequencies
 // Pan positions
 panPositions = [[-1.0, 1.0], [-0.5, 0.5], [-0.5, 0.5], [-1.0, 1.0]],
 
-// How long to sustain a given chord
+// Attack times
+attackTimes = [0.01, 20, 20, 20],
+
+// Sustain times
 sustainTimes = [120, 120, 120, 120],
+
+// Release times
+releaseTimes = [20, 20, 20, 0.01],
 
 // How long to wait until the next chord is played
 waitTimes = [60, 30, 15];
 
 r = Routine({
 	// loop through the frequency chords in our score
-	// A: I'd rather loop through full sets of parameters for individual notes - look back at the solution for the E-A drone
 	freqs.do({|fs, c|
 		var synthGroup = Group(s), // create a group to play our synths on
 		ffs = ffreqs.wrapAt(c), // get the ffreqs at the same index as the freqs (wrap if we have more freqs than ffreqs)
@@ -96,8 +101,8 @@ r = Routine({
 				\freq, f,
 				\ffreq, ffs.wrapAt(i), // getting individual ffreqs
 				\pan, pan.wrapAt(i), // get pan positions
-				\atk, 10,
-				\rel, 10,
+				\atk, attackTimes.wrapAt(i), // get attack times - this doesn't seem to work
+				\rel, releaseTimes.wrapAt(i), // get release times - this doesn't seem to work
 				\resInputEnv, Env([0, 1.1, 0.8], [60, 60]) // we can set the envelope because of how we constructed the SynthDef, using a default value with 16 nodes
 			], synthGroup); // synthGroup is the target, so each synth will play on the Group we just created
 		});
