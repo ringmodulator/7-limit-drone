@@ -117,8 +117,8 @@ r = Routine({
 				\pan, pan.wrapAt(i), // get pan positions
 				\amp, amps.wrapAt(i), // get amplitudes
 				\resInputEnv, res.wrapAt(i), // Get resonance envelopes
-				\atk, atk, // get attack times; maybe make these per note in a chord too
-				\rel, rel // get release times; maybe make these per note in a chord too
+				\atk, atk, // get attack times
+				\rel, rel // get release times
 			], synthGroup); // synthGroup is the target, so each synth will play on the Group we just created
 		});
 		// sustain and release
