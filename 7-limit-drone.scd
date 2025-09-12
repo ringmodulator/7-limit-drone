@@ -103,8 +103,8 @@ r = Routine({
 				\freq, f,
 				\ffreq, ffs.wrapAt(i), // getting individual ffreqs
 				\pan, pan.wrapAt(i), // get pan positions
-				\atk, atk.wrapAt(i), // get attack times
-				\rel, rel.wrapAt(i), // get release times
+				\atk, atk, // get attack times
+				\rel, rel, // get release times
 				\resInputEnv, Env([0, 1.1, 0.8], [60, 60]) // we can set the envelope because of how we constructed the SynthDef, using a default value with 16 nodes
 			], synthGroup); // synthGroup is the target, so each synth will play on the Group we just created
 		});
