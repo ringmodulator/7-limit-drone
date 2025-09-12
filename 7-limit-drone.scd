@@ -101,7 +101,7 @@ r = Routine({
 			// play a synth for each frequency.
 			Synth(\drone, [
 				\freq, f,
-				\ffreq, ffs.wrapAt(i), // getting individual ffreqs
+				\ffreq, ffs.wrapAt(i), // getting individual ffreqs. Use WrapAt here for arrays of arrays.
 				\pan, pan.wrapAt(i), // get pan positions
 				\atk, atk, // get attack times
 				\rel, rel, // get release times
