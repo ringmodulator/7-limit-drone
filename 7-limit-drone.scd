@@ -74,6 +74,13 @@ ffreqs = [ // filter frequencies
 	[root * 4, (octave * 4) + 1]
 ],
 
+resEnvs = [ // Resonance envelopes
+	[Env([0, 1.1, 0.8], [60, 60]), Env([0, 1.1, 0.8], [60, 60])],
+	[Env([0, 1.1, 0.8], [60, 60]), Env([0, 1.1, 0.8], [60, 60])],
+	[Env([0, 1.1, 0.8], [60, 60]), Env([0, 1.1, 0.8], [60, 60])],
+	[Env([0, 1.1, 0.8], [60, 60]), Env([0, 1.1, 0.8], [60, 60])]
+],
+
 // Amplitudes
 amplitudes = [[0.1, 0.1],[0.5, 0.5],[0.1, 0.1],[0.3, 0.3]],
 
@@ -98,6 +105,7 @@ r = Routine({
 		var synthGroup = Group(s), // create a group to play our synths on
 		ffs = ffreqs.wrapAt(c), // get the ffreqs at the same index as the freqs (wrap if we have more freqs than ffreqs)
 		amps = amplitudes.wrapAt(c), // get note amplitudes
+		res = resEnvs.wrapAt(c), // get resonance envelopes
 		pan = panPositions.wrapAt(c), // get pan positions
 		atk = attackTimes.wrapAt(c), // get attack times
 		rel = releaseTimes.wrapAt(c), // get release times
@@ -108,9 +116,9 @@ r = Routine({
 				\ffreq, ffs.wrapAt(i), // getting individual ffreqs. Use WrapAt here for arrays of arrays.
 				\pan, pan.wrapAt(i), // get pan positions
 				\amp, amps.wrapAt(i), // get amplitudes
-				\atk, atk, // get attack times
-				\rel, rel, // get release times
-				\resInputEnv, Env([0, 1.1, 0.8], [60, 60]) // we can set the envelope because of how we constructed the SynthDef, using a default value with 16 nodes
+				\resInputEnv, res.wrapAt(i), // Get resonance envelopes
+				\atk, atk, // get attack times; maybe make these per note in a chord too
+				\rel, rel // get release times; maybe make these per note in a chord too
 			], synthGroup); // synthGroup is the target, so each synth will play on the Group we just created
 		});
 		// sustain and release
