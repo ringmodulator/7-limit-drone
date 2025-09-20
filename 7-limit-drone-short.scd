@@ -43,7 +43,7 @@ SynthDef(
 
 (
 // Calculate note frequencies
-var root = 124,
+var root = 65.41, // Low C
 minorSecond = root * (15/14),
 majorSecond = root * (8/7),
 minorThird = root * (6/5),
@@ -58,46 +58,47 @@ minorSeventh = root * (7/4),
 majorSeventh = root * (15/8),
 octave = root * 2,
 
-// In these next few variables, we'll make a simple "score"
-
-freqs = [ // An array of arrays, so we can have chords
-	[minorSeventh, (minorSeventh * 2) + 1],
-	[root / 2, root + 1],
-	[perfectFifth, minorSeventh],
-	[root / 2, octave + 3]
+freqs = [ // oscillator frequencies
+	[minorSeventh * 4, (minorSeventh * 4) + 4, minorSeventh * 8],
+	[root, root + 3, (root / 2)],
+	[perfectFifth, perfectFifth + 1], // add at least another voice to this and the ones below it
+	[minorThird, minorThird + 0.5],
+	[perfectFourth, perfectFourth + 2],
 ],
 
 ffreqs = [ // filter frequencies
-    [minorSeventh * 4, minorSeventh * 8],
-	[root * 8, root * 8],
-	[minorSeventh * 4, perfectFifth * 4],
-	[root * 4, (octave * 4) + 1]
+	[(minorSeventh * 8) + 4, minorSeventh * 8, minorSeventh * 16],
+	[octave * 2, octave * 2, octave],
+	[perfectFifth * 4, perfectFifth * 8],
+	[minorThird * 8, minorThird * 4],
+	[perfectFourth * 4, perfectFourth * 8],
 ],
 
+// Attack times
+attackTimes = [0.01, 20, 60, 60, 60],
+
+// Sustain times
+sustainTimes = [60, 560, 180, 180, 180],
+
+// Release times
+releaseTimes = [540, 20, 60, 60, 60],
+
+// How long to wait until the next chord is played
+waitTimes = [60, 100, 100, 100],
+
 resEnvs = [ // Resonance envelopes
-	[Env([0, 1.1, 0.8], [60, 60]), Env([0, 1.1, 0.8], [60, 60])],
-	[Env([0, 1.1, 0.8], [60, 60]), Env([0, 1.1, 0.8], [60, 60])],
-	[Env([0, 1.1, 0.8], [60, 60]), Env([0, 1.1, 0.8], [60, 60])],
-	[Env([0, 1.1, 0.8], [60, 60]), Env([0, 1.1, 0.8], [60, 60])]
+	[Env([0.0, 1.3, 1.1, 0.0], [60, 60, 500]), Env([0.0, 1.3, 1.1, 0.0], [60, 60, 500]), Env([0.0, 1.3, 1.1, 0.0], [60, 120, 440])],
+	[Env([0.0, 1.3, 1.0], [500, 120]), Env([0.0, 1.4, 1.0], [500, 120]), Env([0.0, 1.1, 1.0], [500, 120])],
+	[Env([0.0, 1.0, 0.5], [150, 150])],
+	[Env([0.0, 1.3, 0.5], [150, 150])],
+	[Env([0.5, 1.0, 0.0], [150, 150])],
 ],
 
 // Amplitudes
-amplitudes = [[0.1, 0.1],[0.5, 0.5],[0.1, 0.1],[0.3, 0.3]],
+amplitudes = [[0.1, 0.1, 0.1], [0.5, 0.5, 0.2], [0.5, 0.5], [0.5, 0.5], [0.5, 0.5]],
 
 // Pan positions
-panPositions = [[-1.0, 1.0], [-0.5, 0.5], [-0.5, 0.5], [-1.0, 1.0]],
-
-// Attack times
-attackTimes = [0.01, 20, 20, 20],
-
-// Sustain times
-sustainTimes = [120, 120, 120, 120],
-
-// Release times
-releaseTimes = [20, 20, 20, 0.01],
-
-// How long to wait until the next chord is played
-waitTimes = [60, 30, 15];
+panPositions = [[-1.0, 1.0, 0.0], [-1.0, 1.0, 0.0], [-0.5, 0.5], [-0.5, 0.5], [0.5, 0.5]];
 
 r = Routine({
 	// loop through the frequency chords in our score
@@ -113,10 +114,10 @@ r = Routine({
 			// play a synth for each frequency.
 			Synth(\drone, [
 				\freq, f,
-				\ffreq, ffs.wrapAt(i), // getting individual ffreqs. Use WrapAt here for arrays of arrays.
+				\ffreq, ffs.wrapAt(i), // getting individual ffreqs. Use WrapAt here again for arrays of arrays.
 				\pan, pan.wrapAt(i), // get pan positions
 				\amp, amps.wrapAt(i), // get amplitudes
-				\resInputEnv, res.wrapAt(i), // Get resonance envelopes
+				\resInputEnv, res.wrapAt(i), // get resonance envelopes
 				\atk, atk, // get attack times
 				\rel, rel // get release times
 			], synthGroup); // synthGroup is the target, so each synth will play on the Group we just created
@@ -125,7 +126,7 @@ r = Routine({
 		{
 			sustainTimes.wrapAt(c).wait; // Sustain synths for the sustain time
 			synthGroup.release; // Release synths
-		}.fork; // .fork is a shortcut for creating a Routine and playing it immediately. It is the same as writing Routine({ "I am in the routine".postln; }).play;
+		}.fork; // .fork is a shortcut for creating a Routine and playing it immediately.
 		waitTimes.wrapAt(c).wait; // Wait to play the next note or chord in the score.
 	});
 });
