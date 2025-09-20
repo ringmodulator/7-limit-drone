@@ -59,46 +59,126 @@ majorSeventh = root * (15/8),
 octave = root * 2,
 
 freqs = [ // oscillator frequencies
-	[minorSeventh * 4, (minorSeventh * 4) + 4, minorSeventh * 8],
-	[root, root + 3, (root / 2)],
-	[perfectFifth, perfectFifth + 1], // add at least another voice to this and the ones below it
-	[minorThird, minorThird + 0.5],
-	[perfectFourth, perfectFourth + 2],
+	[
+		minorSeventh * 8, // voice 1 (high minor 7th)
+		(minorSeventh * 8) + 4,
+		minorSeventh * 16,
+		(minorSeventh * 16) + 8
+	],
+
+	[
+		root, // voice 2 (bass root)
+		root + 3,
+		(root / 2),
+		(root/2) + 4
+
+	],
+
+	[
+		perfectFifth,  // voice 3 (fifth)
+		perfectFifth + 1
+
+	],
+
+	[
+		minorThird, // voice 4 (minor 3rd)
+		minorThird + 0.5
+
+	],
+
+	[
+		perfectFourth, // voice 5 (fourth)
+		perfectFourth + 2
+	],
 ],
 
 ffreqs = [ // filter frequencies
-	[(minorSeventh * 8) + 4, minorSeventh * 8, minorSeventh * 16],
-	[octave * 2, octave * 2, octave],
-	[perfectFifth * 4, perfectFifth * 8],
-	[minorThird * 8, minorThird * 4],
-	[perfectFourth * 4, perfectFourth * 8],
+	[
+		(minorSeventh * 16) + 4, // voice 1 (high minor 7th)
+		minorSeventh * 16,
+		minorSeventh * 32,
+		(minorSeventh * 32) + 8
+	],
+
+	[
+		octave * 2, // voice 2 (bass root)
+		(octave * 2) + 2,
+		octave,
+		octave + 4
+	],
+
+	[
+		perfectFifth * 4, // voice 3 (fifth)
+		perfectFifth * 8
+	],
+
+	[
+		minorThird * 8, // voice 4 (minor 3rd)
+		minorThird * 4
+	],
+
+	[
+		perfectFourth * 4, // voice 5 (fourth)
+		perfectFourth * 8
+	],
 ],
+
+// How long to wait until the next chord is played
+waitTimes = [60, 100, 100, 100],
 
 // Attack times
 attackTimes = [0.01, 20, 60, 60, 60],
 
 // Sustain times
-sustainTimes = [60, 560, 180, 180, 180],
+sustainTimes = [120, 500, 180, 180, 180],
 
 // Release times
-releaseTimes = [540, 20, 60, 60, 60],
-
-// How long to wait until the next chord is played
-waitTimes = [60, 100, 100, 100],
+releaseTimes = [300, 20, 60, 60, 60],
 
 resEnvs = [ // Resonance envelopes
-	[Env([0.0, 1.3, 1.1, 0.0], [60, 60, 500]), Env([0.0, 1.3, 1.1, 0.0], [60, 60, 500]), Env([0.0, 1.3, 1.1, 0.0], [60, 120, 440])],
-	[Env([0.0, 1.3, 1.0], [500, 120]), Env([0.0, 1.4, 1.0], [500, 120]), Env([0.0, 1.1, 1.0], [500, 120])],
-	[Env([0.0, 1.0, 0.5], [150, 150])],
-	[Env([0.0, 1.3, 0.5], [150, 150])],
-	[Env([0.5, 1.0, 0.0], [150, 150])],
+	[
+		Env([0.8, 1.3, 0.9, 0.0], [60, 60, 300]), // voice 1 (high minor 7th)
+		Env([0.8, 1.3, 0.9, 0.0], [60, 60, 300]),
+		Env([0.0, 0.8, 0.5, 0.0], [60, 120, 240]),
+		Env([0.0, 0.8, 0.5, 0.0], [60, 120, 240])],
+
+	[
+		Env([0.0, 1.3, 1.0], [500, 120]), // voice 2 (bass root)
+		Env([0.0, 1.4, 1.0], [500, 120]),
+		Env([0.0, 1.1, 1.0], [500, 120]),
+		Env([0.0, 1.1, 1.0], [500, 120])
+	],
+
+	[
+		Env([0.0, 1.0, 0.5], [150, 150]) // voice 3 (fifth)
+	],
+
+	[
+		Env([0.0, 1.3, 0.5], [150, 150]) // voice 4 (minor 3rd)
+	],
+
+	[
+		Env([0.5, 1.0, 0.0], [150, 150]) // voice 5 (fourth)
+	],
 ],
 
 // Amplitudes
-amplitudes = [[0.1, 0.1, 0.1], [0.5, 0.5, 0.2], [0.5, 0.5], [0.5, 0.5], [0.5, 0.5]],
+amplitudes = [
+	[0.3, 0.3, 0.1, 0.1],
+	[0.5, 0.5, 0.2, 0.2],
+	[0.5, 0.5],
+	[0.5, 0.5],
+	[0.5, 0.5]
+],
 
 // Pan positions
-panPositions = [[-1.0, 1.0, 0.0], [-1.0, 1.0, 0.0], [-0.5, 0.5], [-0.5, 0.5], [0.5, 0.5]];
+panPositions = [
+	[-1.0, 1.0, -0.5, 0.5],
+	[-1.0, 1.0, -0.5, 0.5],
+	[-0.5, 0.5],
+	[-0.5, 0.5],
+	[0.5, 0.5]
+];
 
 r = Routine({
 	// loop through the frequency chords in our score
