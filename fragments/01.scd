@@ -78,7 +78,7 @@ sustainTimes = [60, 560],
 releaseTimes = [540, 20],
 
 // How long to wait until the next chord is played
-waitTimes = [300],
+waitTimes = [60, 100],
 
 resEnvs = [ // Resonance envelopes
 	[Env([0.0, 1.3, 1.1, 0.0], [60, 60, 500]), Env([0.0, 1.3, 1.1, 0.0], [60, 60, 500]), Env([0.0, 1.3, 1.1, 0.0], [60, 120, 440])],

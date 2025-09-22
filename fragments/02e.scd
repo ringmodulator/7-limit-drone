@@ -46,7 +46,7 @@ SynthDef(
 var root = 65.41, // Low C
 minorSecond = root * (15/14),
 majorSecond = root * (8/7),
-minorThird = root * (6/5),
+septimalMinorThird = root * (7/6),
 majorThird = root * (5/4),
 perfectFourth = root * (4/3),
 augmentedFourth = root * (7/5),
@@ -60,14 +60,14 @@ octave = root * 2,
 
 freqs = [ // oscillator frequencies - consider adding another root that covers all of these, or maybe focus the next segment on the root and minor seventh again
 	[perfectFifth, perfectFifth + 1],
-	[minorThird, minorThird + 0.5],
-	[perfectFourth, perfectFourth + 2],
+	[septimalMinorThird, septimalMinorThird + 0.5],
+	[augmentedFourth, augmentedFourth + 0.25],
 ],
 
 ffreqs = [ // filter frequencies
 	[perfectFifth * 4, perfectFifth * 8],
-	[minorThird * 8, minorThird * 4],
-	[perfectFourth * 4, perfectFourth * 8],
+	[septimalMinorThird * 8, septimalMinorThird * 4],
+	[augmentedFourth * 4, augmentedFourth * 8],
 ],
 
 // Attack times
@@ -84,7 +84,7 @@ waitTimes = [100, 100],
 
 resEnvs = [ // Resonance envelopes
 	[Env([0.0, 0.8, 0.5], [150, 150])],
-	[Env([0.0, 1.3, 0.5], [150, 150])],
+	[Env([0.0, 1., 0.5], [150, 150])],
 	[Env([0.5, 0.8, 0.0], [150, 150])],
 ],
 

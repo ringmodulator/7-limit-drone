@@ -46,7 +46,7 @@ SynthDef(
 var root = 65.41, // Low C
 minorSecond = root * (15/14),
 majorSecond = root * (8/7),
-minorThird = root * (6/5),
+minorThird = root * (7/6), // septimal minor third
 majorThird = root * (5/4),
 perfectFourth = root * (4/3),
 augmentedFourth = root * (7/5),
