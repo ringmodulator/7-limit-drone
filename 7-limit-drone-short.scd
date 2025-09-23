@@ -62,50 +62,50 @@ octave = root * 2,
 freqs = [ // oscillator frequencies
 	[
 		minorSeventh * 8, // voice 1 (high minor 7th)
-		(minorSeventh * 8) + 4,
+		(minorSeventh * 8) * rrand(0.999, 1.001),
 		minorSeventh * 16,
-		(minorSeventh * 16) + 8
+		(minorSeventh * 16) * rrand(0.999, 1.001)
 	],
 
 	[
 		root, // voice 2 (bass root)
-		root + 3,
-		(root / 2),
-		(root/2) + 4
+		root * rrand(0.999, 1.001),
+		root / 2,
+		(root / 2) * rrand(0.999, 1.001)
 
 	],
 
 	[
 		perfectFifth,  // voice 3 (fifth)
-		perfectFifth + 1
+		perfectFifth * rrand(0.999, 1.001)
 
 	],
 
 	[
 		septimalMinorThird, // voice 4 (septimal minor 3rd)
-		septimalMinorThird + 0.5
+		septimalMinorThird * rrand(0.999, 1.001)
 
 	],
 
 	[
 		augmentedFourth, // voice 5 (tritone)
-		augmentedFourth + 0.25
+		augmentedFourth * rrand(0.999, 1.001)
 	],
 ],
 
 ffreqs = [ // filter frequencies
 	[
-		(minorSeventh * 16) + 4, // voice 1 (high minor 7th)
-		minorSeventh * 16,
+		minorSeventh * 16, // voice 1 (high minor 7th)
+		(minorSeventh * 16) * rrand(0.999, 1.001),
 		minorSeventh * 32,
-		(minorSeventh * 32) + 8
+		(minorSeventh * 32) * rrand(0.999, 1.001)
 	],
 
 	[
 		octave * 2, // voice 2 (bass root)
-		(octave * 2) + 2,
+		(octave * 2) * rrand(0.999, 1.001),
 		octave,
-		octave + 4
+		octave * rrand(0.999, 1.001)
 	],
 
 	[
@@ -114,12 +114,12 @@ ffreqs = [ // filter frequencies
 	],
 
 	[
-		septimalMinorThird * 8, // voice 4 (minor 3rd)
+		septimalMinorThird * 8, // voice 4 (septimal minor 3rd)
 		septimalMinorThird * 4
 	],
 
 	[
-		augmentedFourth * 4, // voice 5 (fourth)
+		augmentedFourth * 4, // voice 5 (tritone)
 		augmentedFourth * 8
 	],
 ],
@@ -155,11 +155,11 @@ resEnvs = [ // Resonance envelopes
 	],
 
 	[
-		Env([0.0, 1.1, 0.5], [150, 150]) // voice 4 (minor 3rd)
+		Env([0.0, 1.1, 0.5], [150, 150]) // voice 4 (septimal minor 3rd)
 	],
 
 	[
-		Env([0.0, 1.1, 0.5], [150, 150]) // voice 5 (fourth)
+		Env([0.0, 1.1, 0.5], [150, 150]) // voice 5 (tritone)
 	],
 ],
 
@@ -176,9 +176,9 @@ amplitudes = [
 panPositions = [
 	[-1.0, 1.0, -0.5, 0.5],
 	[-1.0, 1.0, -0.5, 0.5],
-	[-0.5, 0.5],
-	[-0.5, 0.5],
-	[0.5, 0.5]
+	[-1.0, 1.0],
+	[-1.0, 1.0],
+	[-1.0, 1.0]
 ];
 
 r = Routine({
