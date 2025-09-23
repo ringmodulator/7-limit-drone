@@ -77,19 +77,25 @@ freqs = [ // oscillator frequencies
 
 	[
 		perfectFifth,  // voice 3 (fifth)
-		perfectFifth * rrand(0.999, 1.001)
+		perfectFifth * rrand(0.999, 1.001),
+		perfectFifth * 4,
+		(perfectFifth * 4) * rrand(0.999, 1.001)
 
 	],
 
 	[
 		septimalMinorThird, // voice 4 (septimal minor 3rd)
-		septimalMinorThird * rrand(0.999, 1.001)
+		septimalMinorThird * rrand(0.999, 1.001),
+		septimalMinorThird * 4,
+		(septimalMinorThird * 4) * rrand(0.999, 1.001)
 
 	],
 
 	[
 		augmentedFourth, // voice 5 (tritone)
-		augmentedFourth * rrand(0.999, 1.001)
+		augmentedFourth * rrand(0.999, 1.001),
+		augmentedFourth * 4,
+		(augmentedFourth * 4) * rrand(0.999, 1.001)
 	],
 ],
 
@@ -110,17 +116,23 @@ ffreqs = [ // filter frequencies
 
 	[
 		perfectFifth * 4, // voice 3 (fifth)
-		perfectFifth * 8
+		(perfectFifth * 4) * rrand(0.999, 1.001),
+		perfectFifth * 8,
+		(perfectFifth * 8) * rrand(0.999, 1.001)
 	],
 
 	[
-		septimalMinorThird * 8, // voice 4 (septimal minor 3rd)
-		septimalMinorThird * 4
+		septimalMinorThird * 4, // voice 4 (septimal minor 3rd)
+		(septimalMinorThird * 4) * rrand(0.999, 1.001),
+		septimalMinorThird * 8,
+		(septimalMinorThird * 8) * rrand(0.999, 1.001)
 	],
 
 	[
 		augmentedFourth * 4, // voice 5 (tritone)
-		augmentedFourth * 8
+		(augmentedFourth * 4) * rrand(0.999, 1.001),
+		augmentedFourth * 8,
+		(augmentedFourth * 8) * rrand(0.999, 1.001)
 	],
 ],
 
@@ -151,15 +163,18 @@ resEnvs = [ // Resonance envelopes
 	],
 
 	[
-		Env([0.0, 1.1, 0.5], [150, 150]) // voice 3 (fifth)
+		Env([0.0, 1.1, 0.5], [150, 150]), // voice 3 (fifth)
+
 	],
 
 	[
-		Env([0.0, 1.1, 0.5], [150, 150]) // voice 4 (septimal minor 3rd)
+		Env([0.0, 1.1, 0.5], [150, 150]), // voice 4 (septimal minor 3rd)
+
 	],
 
 	[
-		Env([0.0, 1.1, 0.5], [150, 150]) // voice 5 (tritone)
+		Env([0.0, 1.1, 0.5], [150, 150]), // voice 5 (tritone)
+
 	],
 ],
 
@@ -167,18 +182,18 @@ resEnvs = [ // Resonance envelopes
 amplitudes = [
 	[0.3, 0.3, 0.1, 0.1],
 	[0.5, 0.5, 0.2, 0.2],
-	[0.5, 0.5],
-	[0.5, 0.5],
-	[0.5, 0.5]
+	[0.5, 0.5, 0.5, 0.5],
+	[0.5, 0.5, 0.5, 0.5],
+	[0.5, 0.5, 0.5, 0.5]
 ],
 
 // Pan positions
 panPositions = [
-	[-1.0, 1.0, -0.5, 0.5],
-	[-1.0, 1.0, -0.5, 0.5],
-	[-1.0, 1.0],
-	[-1.0, 1.0],
-	[-1.0, 1.0]
+	[-1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0]
 ];
 
 r = Routine({
