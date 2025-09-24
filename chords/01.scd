@@ -87,7 +87,7 @@ attackTimes = [0.01],
 sustainTimes = [120],
 
 // Release times
-releaseTimes = [540],
+releaseTimes = [300],
 
 resEnvs = [ // Resonance envelopes
 	[
