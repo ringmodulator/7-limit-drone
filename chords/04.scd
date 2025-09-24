@@ -61,25 +61,24 @@ octave = root * 2,
 
 freqs = [ // oscillator frequencies
 	[
-		septimalMinorThird, // voice 4 (septimal minor 3rd)
+		septimalMinorThird * rrand(0.999, 1.001), // voice 4 (septimal minor 3rd)
 		septimalMinorThird * rrand(0.999, 1.001),
-		septimalMinorThird * 4,
+		(septimalMinorThird * 4) * rrand(0.999, 1.001),
 		(septimalMinorThird * 4) * rrand(0.999, 1.001)
-
-	]
+	],
 ],
 
 ffreqs = [ // filter frequencies
 	[
-		septimalMinorThird * 4, // voice 4 (septimal minor 3rd)
+		(septimalMinorThird * 4) * rrand(0.999, 1.001), // voice 4 (septimal minor 3rd)
 		(septimalMinorThird * 4) * rrand(0.999, 1.001),
-		septimalMinorThird * 8,
+		(septimalMinorThird * 8) * rrand(0.999, 1.001),
 		(septimalMinorThird * 8) * rrand(0.999, 1.001)
 	]
 ],
 
 // How long to wait until the next chord is played
-waitTimes = [100],
+waitTimes = [0],
 
 // Attack times
 attackTimes = [60],
@@ -92,50 +91,22 @@ releaseTimes = [60],
 
 resEnvs = [ // Resonance envelopes
 	[
-		Env([0.8, 1.3, 0.9, 0.0], [60, 60, 300]), // voice 1 (high minor 7th)
-		Env([0.8, 1.3, 0.9, 0.0], [60, 60, 300]),
-		Env([0.0, 0.8, 0.5, 0.0], [60, 120, 240]),
-		Env([0.0, 0.8, 0.5, 0.0], [60, 120, 240])],
+		Env([0.0, 1.4, 0.0], [60, 240]), // voice 4 (septimal minor 3rd)
+		Env([0.0, 1.4, 0.0], [120, 180]),
+		Env([0.0, 1.4, 0.0], [180, 120]),
+		Env([0.0, 1.4, 0.0], [240, 60])
 
-	[
-		Env([0.0, 1.3, 1.0], [500, 120]), // voice 2 (bass root)
-		Env([0.0, 1.4, 1.0], [500, 120]),
-		Env([0.0, 1.1, 1.0], [500, 120]),
-		Env([0.0, 1.1, 1.0], [500, 120])
-	],
-
-	[
-		Env([0.0, 1.1, 0.5], [150, 150]), // voice 3 (fifth)
-
-	],
-
-	[
-		Env([0.0, 1.1, 0.5], [150, 150]), // voice 4 (septimal minor 3rd)
-
-	],
-
-	[
-		Env([0.0, 1.1, 0.5], [150, 150]), // voice 5 (tritone)
-
-	],
+	]
 ],
 
 // Amplitudes
 amplitudes = [
-	[0.2, 0.2, 0.1, 0.1],
-	[0.5, 0.5, 0.2, 0.2],
-	[0.5, 0.5, 0.5, 0.5],
-	[0.5, 0.5, 0.5, 0.5],
-	[0.5, 0.5, 0.5, 0.5]
+	[0.2, 0.2, 0.2, 0.2]
 ],
 
 // Pan positions
 panPositions = [
-	[-1.0, 1.0, -1.0, 1.0],
-	[-1.0, 1.0, -1.0, 1.0],
-	[-1.0, 1.0, -1.0, 1.0],
-	[-1.0, 1.0, -1.0, 1.0],
-	[-1.0, 1.0, -1.0, 1.0]
+	[-1.0, 1.0, -0.5, 0.5]
 ];
 
 r = Routine({
