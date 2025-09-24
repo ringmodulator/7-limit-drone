@@ -61,121 +61,39 @@ octave = root * 2,
 
 freqs = [ // oscillator frequencies
 	[
-		minorSeventh * 8, // voice 1 (high minor 7th)
-		(minorSeventh * 8) * rrand(0.999, 1.001),
-		minorSeventh * 16,
-		(minorSeventh * 16) * rrand(0.999, 1.001)
-	],
-
-	[
-		root, // voice 2 (bass root)
-		root * rrand(0.999, 1.001),
-		root / 2,
-		(root / 2) * rrand(0.999, 1.001)
-
-	],
-
-	[
-		perfectFifth,  // voice 3 (fifth)
-		perfectFifth * rrand(0.999, 1.001),
-		perfectFifth * 4,
-		(perfectFifth * 4) * rrand(0.999, 1.001)
-
-	],
-
-	[
-		septimalMinorThird, // voice 4 (septimal minor 3rd)
-		septimalMinorThird * rrand(0.999, 1.001),
-		septimalMinorThird * 4,
-		(septimalMinorThird * 4) * rrand(0.999, 1.001)
-
-	],
-
-	[
 		augmentedFourth, // voice 5 (tritone)
 		augmentedFourth * rrand(0.999, 1.001),
 		augmentedFourth * 4,
 		(augmentedFourth * 4) * rrand(0.999, 1.001)
-	],
+	]
 ],
 
 ffreqs = [ // filter frequencies
-	[
-		minorSeventh * 16, // voice 1 (high minor 7th)
-		(minorSeventh * 16) * rrand(0.999, 1.001),
-		minorSeventh * 32,
-		(minorSeventh * 32) * rrand(0.999, 1.001)
-	],
-
-	[
-		octave * 2, // voice 2 (bass root)
-		(octave * 2) * rrand(0.999, 1.001),
-		octave,
-		octave * rrand(0.999, 1.001)
-	],
-
-	[
-		perfectFifth * 4, // voice 3 (fifth)
-		(perfectFifth * 4) * rrand(0.999, 1.001),
-		perfectFifth * 8,
-		(perfectFifth * 8) * rrand(0.999, 1.001)
-	],
-
-	[
-		septimalMinorThird * 4, // voice 4 (septimal minor 3rd)
-		(septimalMinorThird * 4) * rrand(0.999, 1.001),
-		septimalMinorThird * 8,
-		(septimalMinorThird * 8) * rrand(0.999, 1.001)
-	],
-
 	[
 		augmentedFourth * 4, // voice 5 (tritone)
 		(augmentedFourth * 4) * rrand(0.999, 1.001),
 		augmentedFourth * 8,
 		(augmentedFourth * 8) * rrand(0.999, 1.001)
-	],
+	]
 ],
 
 // How long to wait until the next chord is played
-waitTimes = [60, 100, 100, 100],
+waitTimes = [0],
 
 // Attack times
-attackTimes = [0.01, 60, 60, 60, 60],
+attackTimes = [60],
 
 // Sustain times
-sustainTimes = [120, 480, 180, 180, 180],
+sustainTimes = [180],
 
 // Release times
-releaseTimes = [300, 20, 60, 60, 60],
+releaseTimes = [60],
 
 resEnvs = [ // Resonance envelopes
 	[
-		Env([0.8, 1.3, 0.9, 0.0], [60, 60, 300]), // voice 1 (high minor 7th)
-		Env([0.8, 1.3, 0.9, 0.0], [60, 60, 300]),
-		Env([0.0, 0.8, 0.5, 0.0], [60, 120, 240]),
-		Env([0.0, 0.8, 0.5, 0.0], [60, 120, 240])],
-
-	[
-		Env([0.0, 1.3, 1.0], [500, 120]), // voice 2 (bass root)
-		Env([0.0, 1.4, 1.0], [500, 120]),
-		Env([0.0, 1.1, 1.0], [500, 120]),
-		Env([0.0, 1.1, 1.0], [500, 120])
-	],
-
-	[
-		Env([0.0, 1.1, 0.5], [150, 150]), // voice 3 (fifth)
-
-	],
-
-	[
-		Env([0.0, 1.1, 0.5], [150, 150]), // voice 4 (septimal minor 3rd)
-
-	],
-
-	[
 		Env([0.0, 1.1, 0.5], [150, 150]), // voice 5 (tritone)
 
-	],
+	]
 ],
 
 // Amplitudes
