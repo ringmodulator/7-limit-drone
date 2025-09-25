@@ -140,7 +140,7 @@ ffreqs = [ // filter frequencies
 ],
 
 // How long to wait until the next chord is played
-waitTimes = [60, 100, 75, 75, 75],
+waitTimes = [60, 65, 65, 65, 65],
 
 // Attack times
 attackTimes = [0.01, 60, 60, 60, 60, 60],
