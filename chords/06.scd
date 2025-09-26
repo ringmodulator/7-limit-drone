@@ -61,18 +61,22 @@ octave = root * 2,
 
 freqs = [ // oscillator frequencies
 	[
-		(perfectFifth * 2) * rrand(0.999, 1.001), // voice 6 (fifth and minor seventh)
-		(minorSeventh * 2) * rrand(0.999, 1.001),
-		(perfectFifth * 4) * rrand(0.999, 1.001),
-		(minorSeventh * 4) * rrand(0.999, 1.001)
+		(perfectFifth / 2) * rrand(0.999, 1.001), // voice 6 (fifth and minor seventh)
+		(minorSeventh / 2) * rrand(0.999, 1.001),
+		minorSeventh * rrand(0.999, 1.001),
+		perfectFifth * rrand(0.999, 1.001),
+		(perfectFifth * 8) * rrand(0.999, 1.001),
+		(minorSeventh * 8) * rrand(0.999, 1.001)
 	]
 ],
 
 ffreqs = [ // filter frequencies
 	[
 		(perfectFifth * 8) * rrand(0.999, 1.001), // voice 6 (fifth and minor seventh)
-		(minorSeventh * 16) * rrand(0.999, 1.001),
-		(perfectFifth * 8) * rrand(0.999, 1.001),
+		(minorSeventh * 8) * rrand(0.999, 1.001),
+		(minorSeventh * 4) * rrand(0.999, 1.001),
+		(perfectFifth * 4) * rrand(0.999, 1.001),
+		(perfectFifth * 16) * rrand(0.999, 1.001),
 		(minorSeventh * 16) * rrand(0.999, 1.001)
 	]
 ],
@@ -91,22 +95,23 @@ releaseTimes = [60],
 
 resEnvs = [ // Resonance envelopes
 	[
-		Env([0.0, 1.4, 1.2], [60, 240]), // voice 6 (fifth and minor seventh)
-		Env([0.0, 1.4, 1.2], [120, 180]),
-		Env([0.0, 1.4, 1.2], [180, 120]),
-		Env([0.0, 1.4, 1.2], [240, 60])
-
+		Env([0.0, 1.1, 1.0], [60, 240]), // voice 6 (fifth and minor seventh)
+		Env([0.0, 1.1, 1.0], [120, 180]),
+		Env([0.0, 0.5, 0.25], [150, 150]),
+		Env([0.0, 0.5, 0.25], [150, 150]),
+		Env([0.0, 1.1, 1.0], [180, 120]),
+		Env([0.0, 1.1, 1.0], [240, 60])
 	]
 ],
 
 // Amplitudes
 amplitudes = [
-	[0.2, 0.2, 0.2, 0.2]
+	[0.2, 0.2, 0.01, 0.01, 0.075, 0.075]
 ],
 
 // Pan positions
 panPositions = [
-	[-1.0, -1.0, 1.0, 1.0]
+	[-1.0, 1.0, -0.5, 0.5, -1.0, 1.0]
 ];
 
 r = Routine({

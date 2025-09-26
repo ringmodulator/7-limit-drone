@@ -61,19 +61,23 @@ octave = root * 2,
 
 freqs = [ // oscillator frequencies
 	[
-		augmentedFourth * rrand(0.999, 1.001), // voice 5 (tritone)
+		(augmentedFourth / 2) * rrand(0.999, 1.001), // voice 5 (tritone)
+		(augmentedFourth / 2) * rrand(0.999, 1.001),
 		augmentedFourth * rrand(0.999, 1.001),
-		(augmentedFourth * 4) * rrand(0.999, 1.001),
-		(augmentedFourth * 4) * rrand(0.999, 1.001)
+		augmentedFourth * rrand(0.999, 1.001),
+		(augmentedFourth * 8) * rrand(0.999, 1.001),
+		(augmentedFourth * 8) * rrand(0.999, 1.001)
 	]
 ],
 
 ffreqs = [ // filter frequencies
 	[
-		(augmentedFourth * 4) * rrand(0.999, 1.001), // voice 5 (tritone)
+		(augmentedFourth * 8) * rrand(0.999, 1.001), // voice 5 (tritone)
+		(augmentedFourth * 16) * rrand(0.999, 1.001),
+		(augmentedFourth * 4) * rrand(0.999, 1.001),
 		(augmentedFourth * 4) * rrand(0.999, 1.001),
 		(augmentedFourth * 8) * rrand(0.999, 1.001),
-		(augmentedFourth * 8) * rrand(0.999, 1.001)
+		(augmentedFourth * 16) * rrand(0.999, 1.001)
 	]
 ],
 
@@ -91,22 +95,23 @@ releaseTimes = [60],
 
 resEnvs = [ // Resonance envelopes
 	[
-		Env([0.0, 1.4, 0], [60, 240]), // voice 5 (tritone)
-		Env([0.0, 1.4, 0], [120, 180]),
-		Env([0.0, 1.4, 0], [180, 120]),
-		Env([0.0, 1.4, 0], [240, 60])
-
+		Env([0.0, 1.1, 0.0], [60, 240]), // voice 5 (tritone)
+		Env([0.0, 1.1, 0.0], [120, 180]),
+		Env([0.0, 0.5, 0.0], [150, 150]),
+		Env([0.0, 0.5, 0.0], [150, 150]),
+		Env([0.0, 1.1, 0.0], [180, 120]),
+		Env([0.0, 1.1, 0.0], [240, 60])
 	]
 ],
 
 // Amplitudes
 amplitudes = [
-	[0.2, 0.2, 0.2, 0.2]
+	[0.2, 0.2, 0.01, 0.01, 0.075, 0.075]
 ],
 
 // Pan positions
 panPositions = [
-	[-1.0, 1.0, -0.5, 0.5]
+	[-1.0, 1.0, -0.5, 0.5, -1.0, 1.0]
 ];
 
 r = Routine({

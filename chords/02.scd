@@ -61,19 +61,19 @@ octave = root * 2,
 
 freqs = [ // oscillator frequencies
 	[
-		root * rrand(0.999, 1.001), // voice 2 (bass root)
-		root * rrand(0.999, 1.001),
+		(root / 2) * rrand(0.999, 1.001), // voice 2 (bass root)
 		(root / 2) * rrand(0.999, 1.001),
-		(root / 2) * rrand(0.999, 1.001)
+		root * rrand(0.999, 1.001),
+		root * rrand(0.999, 1.001)
 	]
 ],
 
 ffreqs = [ // filter frequencies
 	[
-		(octave * 2) * rrand(0.999, 1.001), // voice 2 (bass root)
-		(octave * 2) * rrand(0.999, 1.001),
+		octave * rrand(0.999, 1.001), // voice 2 (bass root)
 		octave * rrand(0.999, 1.001),
-		octave * rrand(0.999, 1.001)
+		(octave * 2) * rrand(0.999, 1.001),
+		(octave * 2) * rrand(0.999, 1.001)
 	]
 ],
 
@@ -91,10 +91,10 @@ releaseTimes = [20],
 
 resEnvs = [ // Resonance envelopes
 	[
-		Env([0.0, 1.4, 1.0], [200, 420]), // voice 2 (bass root)
-		Env([0.0, 1.4, 1.0], [300, 320]),
-		Env([0.0, 1.4, 1.0], [400, 220]),
-		Env([0.0, 1.4, 1.0], [500, 120])
+		Env([0.5, 1.1, 0.5], [200, 420]), // voice 2 (bass root)
+		Env([0.5, 1.1, 0.5], [300, 320]),
+		Env([0.5, 1.1, 0.5], [400, 220]),
+		Env([0.5, 1.1, 0.5], [500, 120])
 	]
 ],
 

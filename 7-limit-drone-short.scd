@@ -66,7 +66,6 @@ freqs = [ // oscillator frequencies
 		(minorSeventh * 16) * rrand(0.999, 1.001),
 		(minorSeventh * 16) * rrand(0.999, 1.001)
 	],
-
 	[
 		(root / 2) * rrand(0.999, 1.001), // voice 2 (bass root)
 		(root / 2) * rrand(0.999, 1.001),
@@ -211,7 +210,6 @@ resEnvs = [ // Resonance envelopes
 		Env([0.0, 0.5, 0.25], [150, 150]),
 		Env([0.0, 1.1, 1.0], [180, 120]),
 		Env([0.0, 1.1, 1.0], [240, 60])
-
 	]
 ],
 
