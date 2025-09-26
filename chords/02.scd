@@ -100,12 +100,12 @@ resEnvs = [ // Resonance envelopes
 
 // Amplitudes
 amplitudes = [
-	[0.3, 0.3, 0.5, 0.5]
+	[0.3, 0.3, 0.2, 0.2]
 ],
 
 // Pan positions
 panPositions = [
-	[-1.0, 1.0, -0.5, 0.5]
+	[-1.0, 1.0, -1.0, 1.0]
 ];
 
 r = Routine({

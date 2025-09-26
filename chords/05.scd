@@ -106,7 +106,7 @@ resEnvs = [ // Resonance envelopes
 
 // Amplitudes
 amplitudes = [
-	[0.2, 0.2, 0.01, 0.01, 0.075, 0.075]
+	[0.05, 0.05, 0.2, 0.2, 0.02, 0.02]
 ],
 
 // Pan positions

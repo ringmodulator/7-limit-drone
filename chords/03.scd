@@ -67,7 +67,6 @@ freqs = [ // oscillator frequencies
 		perfectFifth * rrand(0.999, 1.001),
 		(perfectFifth * 8) * rrand(0.999, 1.001),
 		(perfectFifth * 8) * rrand(0.999, 1.001)
-
 	]
 ],
 
@@ -100,14 +99,14 @@ resEnvs = [ // Resonance envelopes
 		Env([0.0, 1.1, 0.0], [120, 180]),
 		Env([0.0, 0.5, 0.0], [150, 150]),
 		Env([0.0, 0.5, 0.0], [150, 150]),
-		Env([0.0, 1.1, 0.0], [180, 120]),
-		Env([0.0, 1.1, 0.0], [240, 60])
+		Env([0.0, 1.0, 0.0], [180, 120]),
+		Env([0.0, 1.0, 0.0], [240, 60])
 	]
 ],
 
 // Amplitudes
 amplitudes = [
-	[0.2, 0.2, 0.02, 0.02, 0.02, 0.02]
+	[0.2, 0.2, 0.02, 0.02, 0.01, 0.01]
 ],
 
 // Pan positions

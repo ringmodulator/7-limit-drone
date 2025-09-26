@@ -95,7 +95,7 @@ releaseTimes = [60],
 
 resEnvs = [ // Resonance envelopes
 	[
-		Env([0.0, 1.1, 1.0], [60, 240]), // voice 6 (fifth and minor seventh)
+		Env([0.0, 1.1, 0.0], [60, 240]), // voice 6 (fifth and minor seventh)
 		Env([0.0, 1.1, 0.0], [120, 180]),
 		Env([0.0, 0.5, 0.0], [150, 150]),
 		Env([0.0, 0.5, 0.0], [150, 150]),
@@ -106,7 +106,7 @@ resEnvs = [ // Resonance envelopes
 
 // Amplitudes
 amplitudes = [
-	[0.2, 0.2, 0.02, 0.02, 0.01, 0.01]
+	[0.05, 0.05, 0.2, 0.2, 0.02, 0.02]
 ],
 
 // Pan positions
