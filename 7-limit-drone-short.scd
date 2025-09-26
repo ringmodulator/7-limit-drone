@@ -68,35 +68,43 @@ freqs = [ // oscillator frequencies
 	],
 
 	[
-		root * rrand(0.999, 1.001), // voice 2 (bass root)
-		root * rrand(0.999, 1.001),
+		(root / 2) * rrand(0.999, 1.001), // voice 2 (bass root)
 		(root / 2) * rrand(0.999, 1.001),
-		(root / 2) * rrand(0.999, 1.001)
+		root * rrand(0.999, 1.001),
+		root * rrand(0.999, 1.001)
 	],
 	[
-		perfectFifth * rrand(0.999, 1.001),  // voice 3 (fifth, a bit flutey)
+		(perfectFifth / 2) * rrand(0.999, 1.001),  // voice 3 (fifth)
+		(perfectFifth / 2) * rrand(0.999, 1.001),
 		perfectFifth * rrand(0.999, 1.001),
-		perfectFifth * 4 * rrand(0.999, 1.001),
-		(perfectFifth * 4) * rrand(0.999, 1.001)
+		perfectFifth * rrand(0.999, 1.001),
+		(perfectFifth * 8) * rrand(0.999, 1.001),
+		(perfectFifth * 8) * rrand(0.999, 1.001)
 
 	],
 	[
-		septimalMinorThird * rrand(0.999, 1.001), // voice 4 (septimal minor 3rd)
+		(septimalMinorThird / 2) * rrand(0.999, 1.001), // voice 4 (septimal minor 3rd)
+		(septimalMinorThird / 2) * rrand(0.999, 1.001),
 		septimalMinorThird * rrand(0.999, 1.001),
-		(septimalMinorThird * 4) * rrand(0.999, 1.001),
-		(septimalMinorThird * 4) * rrand(0.999, 1.001)
+		septimalMinorThird * rrand(0.999, 1.001),
+		(septimalMinorThird * 8) * rrand(0.999, 1.001),
+		(septimalMinorThird * 8) * rrand(0.999, 1.001)
 	],
 	[
-		augmentedFourth * rrand(0.999, 1.001), // voice 5 (tritone)
+		(augmentedFourth / 2) * rrand(0.999, 1.001), // voice 5 (tritone)
+		(augmentedFourth / 2) * rrand(0.999, 1.001),
 		augmentedFourth * rrand(0.999, 1.001),
-		(augmentedFourth * 4) * rrand(0.999, 1.001),
-		(augmentedFourth * 4) * rrand(0.999, 1.001)
+		augmentedFourth * rrand(0.999, 1.001),
+		(augmentedFourth * 8) * rrand(0.999, 1.001),
+		(augmentedFourth * 8) * rrand(0.999, 1.001)
 	],
 	[
-		(perfectFifth * 2) * rrand(0.999, 1.001), // voice 6 (fifth and minor seventh)
-		(minorSeventh * 2) * rrand(0.999, 1.001),
-		(perfectFifth * 4) * rrand(0.999, 1.001),
-		(minorSeventh * 4) * rrand(0.999, 1.001)
+		(perfectFifth / 2) * rrand(0.999, 1.001), // voice 6 (fifth and minor seventh)
+		(minorSeventh / 2) * rrand(0.999, 1.001),
+		minorSeventh * rrand(0.999, 1.001),
+		perfectFifth * rrand(0.999, 1.001),
+		(perfectFifth * 8) * rrand(0.999, 1.001),
+		(minorSeventh * 8) * rrand(0.999, 1.001)
 	]
 ],
 
@@ -108,32 +116,40 @@ ffreqs = [ // filter frequencies
 		(root * 32) * rrand(0.999, 1.001)
 	],
 	[
-		(octave * 2) * rrand(0.999, 1.001), // voice 2 (bass root)
-		(octave * 2) * rrand(0.999, 1.001),
+		octave * rrand(0.999, 1.001), // voice 2 (bass root)
 		octave * rrand(0.999, 1.001),
-		octave * rrand(0.999, 1.001)
+		(octave * 2) * rrand(0.999, 1.001),
+		(octave * 2) * rrand(0.999, 1.001)
 	],
 	[
-		(perfectFifth * 8) * rrand(0.999, 1.001), // voice 3 (fifth)
+		(perfectFifth * 16) * rrand(0.999, 1.001), // voice 3 (fifth)
 		(perfectFifth * 16) * rrand(0.999, 1.001),
-		(perfectFifth * 8) * rrand(0.999, 1.001),
-		(perfectFifth * 16) * rrand(0.999, 1.001)
+		(perfectFifth * 4) * rrand(0.999, 1.001),
+		(perfectFifth * 4) * rrand(0.999, 1.001),
+		(septimalMinorThird * 16) * rrand(0.999, 1.001),
+		(septimalMinorThird * 16) * rrand(0.999, 1.001)
 	],
 	[
 		(septimalMinorThird * 8) * rrand(0.999, 1.001), // voice 4 (septimal minor 3rd)
 		(septimalMinorThird * 16) * rrand(0.999, 1.001),
+		(septimalMinorThird * 4) * rrand(0.999, 1.001),
+		(septimalMinorThird * 4) * rrand(0.999, 1.001),
 		(septimalMinorThird * 8) * rrand(0.999, 1.001),
-		(septimalMinorThird * 15) * rrand(0.999, 1.001)
+		(septimalMinorThird * 16) * rrand(0.999, 1.001)
 	],
 	[
 		(augmentedFourth * 8) * rrand(0.999, 1.001), // voice 5 (tritone)
 		(augmentedFourth * 16) * rrand(0.999, 1.001),
+		(augmentedFourth * 4) * rrand(0.999, 1.001),
+		(augmentedFourth * 4) * rrand(0.999, 1.001),
 		(augmentedFourth * 8) * rrand(0.999, 1.001),
 		(augmentedFourth * 16) * rrand(0.999, 1.001)
 	],
 	[
 		(perfectFifth * 8) * rrand(0.999, 1.001), // voice 6 (fifth and minor seventh)
 		(minorSeventh * 8) * rrand(0.999, 1.001),
+		(minorSeventh * 4) * rrand(0.999, 1.001),
+		(perfectFifth * 4) * rrand(0.999, 1.001),
 		(perfectFifth * 16) * rrand(0.999, 1.001),
 		(minorSeventh * 16) * rrand(0.999, 1.001)
 	]
@@ -153,40 +169,48 @@ releaseTimes = [300, 20, 60, 60, 60, 60],
 
 resEnvs = [ // Resonance envelopes
 	[
-		Env([0.8, 1.3, 1.1, 0.8], [60, 120, 240]), // voice 1 (high minor 7th)
-		Env([0.8, 1.3, 1.1, 0.8], [60, 120, 240]),
-		Env([0.8, 1.3, 1.1, 0.8], [120, 60, 240]),
-		Env([0.8, 1.3, 1.1, 0.8], [120, 60, 240])
+		Env([0.8, 1.3, 1.0, 0.5], [60, 120, 240]), // voice 1 (high minor 7th)
+		Env([0.8, 1.3, 1.0, 0.5], [60, 120, 240]),
+		Env([0.8, 1.3, 1.0, 0.5], [120, 60, 240]),
+		Env([0.8, 1.3, 1.0, 0.5], [120, 60, 240])
 	],
 	[
-		Env([0.0, 1.2, 1.0], [200, 420]), // voice 2 (bass root)
-		Env([0.0, 1.2, 1.0], [300, 320]),
-		Env([0.0, 1.2, 1.0], [400, 220]),
-		Env([0.0, 1.2, 1.0], [500, 120])
+		Env([0.5, 1.1, 0.5], [200, 420]), // voice 2 (bass root)
+		Env([0.5, 1.1, 0.5], [300, 320]),
+		Env([0.5, 1.1, 0.5], [400, 220]),
+		Env([0.5, 1.1, 0.5], [500, 120])
 	],
 	[
-		Env([0.0, 1.2, 0.0], [60, 240]), // voice 3 (fifth)
-		Env([0.0, 1.2, 0.0], [120, 180]),
-		Env([0.0, 1.2, 0.0], [180, 120]),
-		Env([0.0, 1.2, 0.0], [240, 60])
+		Env([0.0, 1.1, 0.0], [60, 240]), // voice 3 (fifth)
+		Env([0.0, 1.1, 0.0], [120, 180]),
+		Env([0.0, 0.5, 0.0], [150, 150]),
+		Env([0.0, 0.5, 0.0], [150, 150]),
+		Env([0.0, 1.1, 0.0], [180, 120]),
+		Env([0.0, 1.1, 0.0], [240, 60])
 	],
 	[
-		Env([0.0, 1.2, 0.0], [60, 240]), // voice 4 (septimal minor 3rd)
-		Env([0.0, 1.2, 0.0], [120, 180]),
-		Env([0.0, 1.2, 0.0], [180, 120]),
-		Env([0.0, 1.2, 0.0], [240, 60])
+		Env([0.0, 1.1, 0.0], [60, 240]), // voice 4 (septimal minor 3rd)
+		Env([0.0, 1.1, 0.0], [120, 180]),
+		Env([0.0, 0.5, 0.0], [150, 150]),
+		Env([0.0, 0.5, 0.0], [150, 150]),
+		Env([0.0, 1.1, 0.0], [180, 120]),
+		Env([0.0, 1.1, 0.0], [240, 60])
 	],
 	[
-		Env([0.0, 1.2, 0.0], [60, 240]), // voice 5 (tritone)
-		Env([0.0, 1.2, 0.0], [120, 180]),
-		Env([0.0, 1.2, 0.0], [180, 120]),
-		Env([0.0, 1.2, 0.0], [240, 60])
+		Env([0.0, 1.1, 0.0], [60, 240]), // voice 5 (tritone)
+		Env([0.0, 1.1, 0.0], [120, 180]),
+		Env([0.0, 0.5, 0.0], [150, 150]),
+		Env([0.0, 0.5, 0.0], [150, 150]),
+		Env([0.0, 1.1, 0.0], [180, 120]),
+		Env([0.0, 1.1, 0.0], [240, 60])
 	],
 	[
-		Env([0.0, 1.2, 1.0], [60, 240]), // voice 6 (fifth and minor seventh)
-		Env([0.0, 1.2, 1.0], [120, 180]),
-		Env([0.0, 1.2, 1.0], [180, 120]),
-		Env([0.0, 1.2, 1.0], [240, 60])
+		Env([0.0, 1.1, 1.0], [60, 240]), // voice 6 (fifth and minor seventh)
+		Env([0.0, 1.1, 1.0], [120, 180]),
+		Env([0.0, 0.5, 0.25], [150, 150]),
+		Env([0.0, 0.5, 0.25], [150, 150]),
+		Env([0.0, 1.1, 1.0], [180, 120]),
+		Env([0.0, 1.1, 1.0], [240, 60])
 
 	]
 ],
@@ -194,21 +218,21 @@ resEnvs = [ // Resonance envelopes
 // Amplitudes
 amplitudes = [
 	[0.008, 0.008, 0.008, 0.008],
-	[0.2, 0.2, 0.3, 0.3],
-	[0.2, 0.2, 0.1, 0.1],
-	[0.2, 0.2, 0.1, 0.1],
-	[0.2, 0.2, 0.1, 0.1],
-	[0.2, 0.2, 0.1, 0.1]
+	[0.3, 0.3, 0.2, 0.2],
+	[0.2, 0.2, 0.01, 0.01, 0.075, 0.075],
+	[0.2, 0.2, 0.01, 0.01, 0.075, 0.075],
+	[0.2, 0.2, 0.01, 0.01, 0.075, 0.075],
+	[0.2, 0.2, 0.01, 0.01, 0.075, 0.075]
 ],
 
 // Pan positions
 panPositions = [
-	[-1.0, 1.0, -0.5, 0.5],
-	[-1.0, 1.0, -0.5, 0.5],
-	[-1.0, 1.0, -0.5, 0.5],
-	[-1.0, 1.0, -0.5, 0.5],
-	[-1.0, 1.0, -0.5, 0.5],
-	[-1.0, 1.0, -0.5, 0.5]
+	[-1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -0.5, 0.5, -1.0, 1.0],
+	[-1.0, 1.0, -0.5, 0.5, -1.0, 1.0],
+	[-1.0, 1.0, -0.5, 0.5, -1.0, 1.0],
+	[-1.0, 1.0, -0.5, 0.5, -1.0, 1.0]
 ];
 
 r = Routine({
