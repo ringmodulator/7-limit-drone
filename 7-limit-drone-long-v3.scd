@@ -65,8 +65,8 @@ freqs = [ // oscillator frequencies
 	[
 		(root / 2) * rrand(0.999, 1.001), // voice 1
 		(root / 2) * rrand(0.999, 1.001),
-		root * rrand(0.999, 1.001),
-		root * rrand(0.999, 1.001),
+		septimalMinorThird * rrand(0.999, 1.001),
+		septimalMinorThird * rrand(0.999, 1.001),
 		(root * 8) * rrand(0.999, 1.001),
 		(root * 8) * rrand(0.999, 1.001)
 	],
