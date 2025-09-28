@@ -59,91 +59,110 @@ minorSixth = root * (8/5),
 majorSixth = root * (5/3),
 minorSeventh = root * (7/4),
 majorSeventh = root * (15/8),
-octave = root * 2,
 
 freqs = [ // oscillator frequencies
 	[
-		(root / 2) * rrand(0.999, 1.001), // voice 1
-		(root / 2) * rrand(0.999, 1.001),
-		septimalMinorThird * rrand(0.999, 1.001),
-		septimalMinorThird * rrand(0.999, 1.001),
-		(root * 8) * rrand(0.999, 1.001),
-		(root * 8) * rrand(0.999, 1.001)
+		(root / 2),
+		(root / 2),
+		(septimalMinorThird * 2),
+		(septimalMinorThird * 2),
+		perfectFifth,
+		perfectFifth,
+		(minorSeventh * 2),
+		(minorSeventh * 2)
 	],
 	[
-		(perfectFifth / 2) * rrand(0.999, 1.001),  // voice 2
-		(perfectFifth / 2) * rrand(0.999, 1.001),
-		perfectFifth * rrand(0.999, 1.001),
-		perfectFifth * rrand(0.999, 1.001),
-		(perfectFifth * 8) * rrand(0.999, 1.001),
-		(perfectFifth * 8) * rrand(0.999, 1.001)
+		(septimalMinorThird / 2),
+		(septimalMinorThird / 2),
+		(perfectFifth * 2),
+		(perfectFifth * 2),
+		minorSeventh,
+		minorSeventh,
+		(root * 2),
+		(root * 2),
 	],
 	[
-		(septimalMinorThird / 2) * rrand(0.999, 1.001), // voice 3
-		(septimalMinorThird / 2) * rrand(0.999, 1.001),
-		septimalMinorThird * rrand(0.999, 1.001),
-		septimalMinorThird * rrand(0.999, 1.001),
-		(septimalMinorThird * 8) * rrand(0.999, 1.001),
-		(septimalMinorThird * 8) * rrand(0.999, 1.001)
+		(perfectFifth / 2),
+		(perfectFifth / 2),
+		(minorSeventh * 2),
+		(minorSeventh * 2),
+		root,
+		root,
+		(septimalMinorThird * 2),
+		(septimalMinorThird * 2),
 	],
 	[
-		(augmentedFourth / 2) * rrand(0.999, 1.001), // voice 4
-		(augmentedFourth / 2) * rrand(0.999, 1.001),
-		augmentedFourth * rrand(0.999, 1.001),
-		augmentedFourth * rrand(0.999, 1.001),
-		(augmentedFourth * 8) * rrand(0.999, 1.001),
-		(augmentedFourth * 8) * rrand(0.999, 1.001)
+		(minorSeventh / 2),
+		(minorSeventh / 2),
+		(root * 2),
+		(root * 2),
+		septimalMinorThird,
+		septimalMinorThird,
+		(perfectFifth * 2),
+		(perfectFifth * 2),
 	],
 	[
-		(minorSeventh / 2) * rrand(0.999, 1.001), // voice 5
-		(minorSeventh / 2) * rrand(0.999, 1.001),
-		minorSeventh * rrand(0.999, 1.001),
-		minorSeventh * rrand(0.999, 1.001),
-		(minorSeventh * 8) * rrand(0.999, 1.001),
-		(minorSeventh * 8) * rrand(0.999, 1.001)
-	]
+		(root / 2),
+		(root),
+		(septimalMinorThird * 2),
+		(septimalMinorThird * 2),
+		perfectFifth,
+		perfectFifth,
+		(minorSeventh * 2),
+		(minorSeventh * 2)
+	],
 ],
 
 ffreqs = [ // filter frequencies
 	[
-		(root * 8) * rrand(0.999, 1.001), // voice 1
-		(root * 16) * rrand(0.999, 1.001),
-		(root * 4) * rrand(0.999, 1.001),
-		(root * 4) * rrand(0.999, 1.001),
-		(root * 8) * rrand(0.999, 1.001),
-		(root * 16) * rrand(0.999, 1.001)
+		(root * 2),
+		(root * 2),
+		(septimalMinorThird * 4),
+		(septimalMinorThird * 4),
+		(perfectFifth * 8),
+		(perfectFifth * 8),
+		(minorSeventh * 16),
+		(minorSeventh * 16)
 	],
 	[
-		(perfectFifth * 8) * rrand(0.999, 1.001), // voice 2
-		(perfectFifth * 16) * rrand(0.999, 1.001),
-		(perfectFifth * 4) * rrand(0.999, 1.001),
-		(perfectFifth * 4) * rrand(0.999, 1.001),
-		(perfectFifth * 8) * rrand(0.999, 1.001),
-		(perfectFifth * 16) * rrand(0.999, 1.001)
+		(septimalMinorThird * 2),
+		(septimalMinorThird * 2),
+		(perfectFifth * 4),
+		(perfectFifth * 4),
+		(minorSeventh * 8),
+		(minorSeventh * 8),
+		(root * 16),
+		(root * 16)
 	],
 	[
-		(septimalMinorThird * 8) * rrand(0.999, 1.001), // voice 3
-		(septimalMinorThird * 16) * rrand(0.999, 1.001),
-		(septimalMinorThird * 4) * rrand(0.999, 1.001),
-		(septimalMinorThird * 4) * rrand(0.999, 1.001),
-		(septimalMinorThird * 8) * rrand(0.999, 1.001),
-		(septimalMinorThird * 16) * rrand(0.999, 1.001)
+		(perfectFifth * 2),
+		(perfectFifth * 2),
+		(minorSeventh * 4),
+		(minorSeventh* 4),
+		(root * 8),
+		(root * 8),
+		(septimalMinorThird * 16),
+		(septimalMinorThird * 16)
 	],
 	[
-		(augmentedFourth * 8) * rrand(0.999, 1.001), // voice 4
-		(augmentedFourth * 16) * rrand(0.999, 1.001),
-		(augmentedFourth * 4) * rrand(0.999, 1.001),
-		(augmentedFourth * 4) * rrand(0.999, 1.001),
-		(augmentedFourth * 8) * rrand(0.999, 1.001),
-		(augmentedFourth * 16) * rrand(0.999, 1.001)
+		(minorSeventh * 2),
+		(minorSeventh * 2),
+		(root * 4),
+		(root * 4),
+		(septimalMinorThird * 8),
+		(septimalMinorThird * 8),
+		(perfectFifth * 16),
+		(perfectFifth* 16)
 	],
 	[
-		(minorSeventh * 8) * rrand(0.999, 1.001), // voice 5
-		(minorSeventh * 16) * rrand(0.999, 1.001),
-		(minorSeventh * 4) * rrand(0.999, 1.001),
-		(minorSeventh * 4) * rrand(0.999, 1.001),
-		(minorSeventh * 8) * rrand(0.999, 1.001),
-		(minorSeventh * 16) * rrand(0.999, 1.001)
+		(root * 2),
+		(root * 2),
+		(septimalMinorThird * 4),
+		(septimalMinorThird * 4),
+		(perfectFifth * 8),
+		(perfectFifth * 8),
+		(minorSeventh * 16),
+		(minorSeventh * 16)
 	]
 ],
 
@@ -161,63 +180,73 @@ releaseTimes = [60, 60, 60, 60, 60],
 
 resEnvs = [ // Resonance envelopes
 	[
-		Env([0.0, 1.2, 0.5], [150, 750]), // voice 1
-		Env([0.0, 1.2, 0.5], [300, 600]),
-		Env([0.0, 1.2, 0.5], [450, 450]),
-		Env([0.0, 1.2, 0.5], [450, 450]),
-		Env([0.0, 1.2, 0.5], [600, 600]),
-		Env([0.0, 1.2, 0.5], [750, 150])
+		Env([0.0, 0.0, 0.0], [112.5, 787.5]),
+		Env([0.0, 0.0, 0.0], [225, 675]),
+		Env([0.0, 0.0, 0.0], [337.5, 562.5]),
+		Env([0.0, 0.0, 0.0], [450, 450]),
+		Env([0.0, 0.0, 0.0], [450, 450]),
+		Env([0.0, 0.0, 0.0], [562.5, 337.5]),
+		Env([0.0, 0.0, 0.0], [675, 225]),
+		Env([0.0, 0.0, 0.0], [787.5, 112.5])
 	],
 	[
-		Env([0.0, 1.2, 0.5], [150, 750]), // voice 1
-		Env([0.0, 1.2, 0.5], [300, 600]),
-		Env([0.0, 1.2, 0.5], [450, 450]),
-		Env([0.0, 1.2, 0.5], [450, 450]),
-		Env([0.0, 1.2, 0.5], [600, 600]),
-		Env([0.0, 1.2, 0.5], [750, 150])
+		Env([0.0, 0.0, 0.0], [112.5, 787.5]),
+		Env([0.0, 0.0, 0.0], [225, 675]),
+		Env([0.0, 0.0, 0.0], [337.5, 562.5]),
+		Env([0.0, 0.0, 0.0], [450, 450]),
+		Env([0.0, 0.0, 0.0], [450, 450]),
+		Env([0.0, 0.0, 0.0], [562.5, 337.5]),
+		Env([0.0, 0.0, 0.0], [675, 225]),
+		Env([0.0, 0.0, 0.0], [787.5, 112.5])
 	],
 	[
-		Env([0.0, 1.2, 0.5], [150, 750]), // voice 1
-		Env([0.0, 1.2, 0.5], [300, 600]),
-		Env([0.0, 1.2, 0.5], [450, 450]),
-		Env([0.0, 1.2, 0.5], [450, 450]),
-		Env([0.0, 1.2, 0.5], [600, 600]),
-		Env([0.0, 1.2, 0.5], [750, 150])
+		Env([0.0, 0.0, 0.0], [112.5, 787.5]),
+		Env([0.0, 0.0, 0.0], [225, 675]),
+		Env([0.0, 0.0, 0.0], [337.5, 562.5]),
+		Env([0.0, 0.0, 0.0], [450, 450]),
+		Env([0.0, 0.0, 0.0], [450, 450]),
+		Env([0.0, 0.0, 0.0], [562.5, 337.5]),
+		Env([0.0, 0.0, 0.0], [675, 225]),
+		Env([0.0, 0.0, 0.0], [787.5, 112.5])
 	],
 	[
-		Env([0.0, 1.2, 0.5], [150, 750]), // voice 1
-		Env([0.0, 1.2, 0.5], [300, 600]),
-		Env([0.0, 1.2, 0.5], [450, 450]),
-		Env([0.0, 1.2, 0.5], [450, 450]),
-		Env([0.0, 1.2, 0.5], [600, 600]),
-		Env([0.0, 1.2, 0.5], [750, 150])
+		Env([0.0, 0.0, 0.0], [112.5, 787.5]),
+		Env([0.0, 0.0, 0.0], [225, 675]),
+		Env([0.0, 0.0, 0.0], [337.5, 562.5]),
+		Env([0.0, 0.0, 0.0], [450, 450]),
+		Env([0.0, 0.0, 0.0], [450, 450]),
+		Env([0.0, 0.0, 0.0], [562.5, 337.5]),
+		Env([0.0, 0.0, 0.0], [675, 225]),
+		Env([0.0, 0.0, 0.0], [787.5, 112.5])
 	],
 	[
-		Env([0.0, 1.2, 0.5], [150, 750]), // voice 1
-		Env([0.0, 1.2, 0.5], [300, 600]),
-		Env([0.0, 1.2, 0.5], [450, 450]),
-		Env([0.0, 1.2, 0.5], [450, 450]),
-		Env([0.0, 1.2, 0.5], [600, 600]),
-		Env([0.0, 1.2, 0.5], [750, 150])
+		Env([0.0, 0.0, 0.0], [112.5, 787.5]),
+		Env([0.0, 0.0, 0.0], [225, 675]),
+		Env([0.0, 0.0, 0.0], [337.5, 562.5]),
+		Env([0.0, 0.0, 0.0], [450, 450]),
+		Env([0.0, 0.0, 0.0], [450, 450]),
+		Env([0.0, 0.0, 0.0], [562.5, 337.5]),
+		Env([0.0, 0.0, 0.0], [675, 225]),
+		Env([0.0, 0.0, 0.0], [787.5, 112.5])
 	]
 ],
 
 // Amplitudes
 amplitudes = [
-	[0.05, 0.05, 0.2, 0.2, 0.03, 0.03],
-	[0.05, 0.05, 0.2, 0.2, 0.03, 0.03],
-	[0.05, 0.05, 0.2, 0.2, 0.03, 0.03],
-	[0.05, 0.05, 0.2, 0.2, 0.03, 0.03],
-	[0.05, 0.05, 0.2, 0.2, 0.03, 0.03]
+	[0.1, 0.1, 0.02, 0.02, 0.1, 0.1, 0.02, 0.02],
+	[0.1, 0.1, 0.02, 0.02, 0.1, 0.1, 0.02, 0.02],
+	[0.1, 0.1, 0.02, 0.02, 0.1, 0.1, 0.02, 0.02],
+	[0.1, 0.1, 0.02, 0.02, 0.1, 0.1, 0.02, 0.02],
+	[0.1, 0.1, 0.02, 0.02, 0.1, 0.1, 0.02, 0.02]
 ],
 
 // Pan positions
 panPositions = [
-	[-1.0, 1.0, -0.5, 0.5, -1.0, 1.0],
-	[-1.0, 1.0, -0.5, 0.5, -1.0, 1.0],
-	[-1.0, 1.0, -0.5, 0.5, -1.0, 1.0],
-	[-1.0, 1.0, -0.5, 0.5, -1.0, 1.0],
-	[-1.0, 1.0, -0.5, 0.5, -1.0, 1.0]
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0]
 ];
 
 r = Routine({

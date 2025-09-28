@@ -63,53 +63,37 @@ octave = root * 2,
 
 freqs = [ // oscillator frequencies
 	[
-		(root / 2) * rrand(0.999, 1.001), // voice 1
-		(root / 2) * rrand(0.999, 1.001),
-		root * rrand(0.999, 1.001),
-		root * rrand(0.999, 1.001),
+		(root / 2), // voice 1
+		(root / 2),
+		root,
+		root,
 		root * rrand(0.999, 1.001),
 		root * rrand(0.999, 1.001)
 	],
 	[
-		(perfectFifth / 2) * rrand(0.999, 1.001),  // voice 2
-		(perfectFifth / 2) * rrand(0.999, 1.001),
-		perfectFifth * rrand(0.999, 1.001),
-		perfectFifth * rrand(0.999, 1.001),
+		(perfectFifth / 2),  // voice 2
+		(perfectFifth / 2),
+		perfectFifth,
+		perfectFifth,
 		perfectFifth * rrand(0.999, 1.001),
 		perfectFifth * rrand(0.999, 1.001)
 	],
 	[
-		(septimalMinorThird / 2) * rrand(0.999, 1.001), // voice 3
-		(septimalMinorThird / 2) * rrand(0.999, 1.001),
-		septimalMinorThird * rrand(0.999, 1.001),
-		septimalMinorThird * rrand(0.999, 1.001),
+		(septimalMinorThird / 2), // voice 3
+		(septimalMinorThird / 2),
+		septimalMinorThird,
+		septimalMinorThird,
 		septimalMinorThird * rrand(0.999, 1.001),
 		septimalMinorThird * rrand(0.999, 1.001)
 	],
 	[
-		(augmentedFourth / 2) * rrand(0.999, 1.001), // voice 4
-		(augmentedFourth / 2) * rrand(0.999, 1.001),
-		augmentedFourth * rrand(0.999, 1.001),
-		augmentedFourth * rrand(0.999, 1.001),
-		augmentedFourth * rrand(0.999, 1.001),
-		augmentedFourth * rrand(0.999, 1.001)
-	],
-	[
-		(minorSeventh / 2) * rrand(0.999, 1.001), // voice 5
-		(minorSeventh / 2) * rrand(0.999, 1.001),
-		minorSeventh * rrand(0.999, 1.001),
-		minorSeventh * rrand(0.999, 1.001),
+		(minorSeventh / 2), // voice 4
+		(minorSeventh / 2),
+		minorSeventh,
+		minorSeventh,
 		minorSeventh * rrand(0.999, 1.001),
 		minorSeventh * rrand(0.999, 1.001)
 	],
-	[
-		(root / 2) * rrand(0.999, 1.001), // voice 6
-		(root / 2) * rrand(0.999, 1.001),
-		root * rrand(0.999, 1.001),
-		root * rrand(0.999, 1.001),
-		root * rrand(0.999, 1.001),
-		root * rrand(0.999, 1.001)
-	]
 ],
 
 ffreqs = [ // filter frequencies
@@ -138,62 +122,69 @@ ffreqs = [ // filter frequencies
 		(septimalMinorThird * 16) * rrand(0.999, 1.001)
 	],
 	[
-		(augmentedFourth * 4) * rrand(0.999, 1.001), // voice 4
-		(augmentedFourth * 4) * rrand(0.999, 1.001),
-		(augmentedFourth * 8) * rrand(0.999, 1.001),
-		(augmentedFourth * 8) * rrand(0.999, 1.001),
-		(augmentedFourth * 16) * rrand(0.999, 1.001),
-		(augmentedFourth * 16) * rrand(0.999, 1.001)
-	],
-	[
 		(minorSeventh * 4) * rrand(0.999, 1.001), // voice 5
 		(minorSeventh * 4) * rrand(0.999, 1.001),
 		(minorSeventh * 8) * rrand(0.999, 1.001),
 		(minorSeventh * 8) * rrand(0.999, 1.001),
 		(minorSeventh * 16) * rrand(0.999, 1.001),
 		(minorSeventh * 16) * rrand(0.999, 1.001)
-	],
-	[
-		(root * 4) * rrand(0.999, 1.001), // voice 6
-		(root * 4) * rrand(0.999, 1.001),
-		(root * 8) * rrand(0.999, 1.001),
-		(root * 8) * rrand(0.999, 1.001),
-		(root * 16) * rrand(0.999, 1.001),
-		(root * 16) * rrand(0.999, 1.001)
 	]
 ],
 
 // How long to wait until the next chord is played
-waitTimes = [150, 150, 150, 150, 150],
+waitTimes = [0, 150, 450, 450],
 
 // Attack times
-attackTimes = [60, 60, 60, 60, 60, 60],
+attackTimes = [60, 90, 60, 60, 60],
 
 // Sustain times
-sustainTimes = [780, 780, 780, 780, 780, 780],
+sustainTimes = [1530, 1470, 780, 780],
 
 // Release times
-releaseTimes = [60, 60, 60, 60, 60, 60],
+releaseTimes = [60, 60, 60, 60],
 
 resEnvs = [ // Resonance envelopes
 	[
-		Env([0.0, 1.1, 0.0], [150, 750]),
-		Env([0.0, 1.1, 0.0], [300, 600]),
-		Env([0.0, 1.1, 0.0], [450, 450]),
-		Env([0.0, 1.1, 0.0], [450, 450]),
-		Env([0.0, 1.1, 0.0], [600, 300]),
-		Env([0.0, 1.1, 0.0], [750, 150])
-	]
+		Env([0.0, 1.1, 0.0], [275, 1375]), // Voice 1
+		Env([0.0, 1.1, 0.0], [550, 1100]),
+		Env([0.0, 1.1, 0.0], [825, 825]),
+		Env([0.0, 1.1, 0.0], [825, 825]),
+		Env([0.0, 1.1, 0.0], [1100, 550]),
+		Env([0.0, 1.1, 0.0], [1375, 275])
+	],
+	[
+		Env([0.0, 1.1, 0.0], [1375, 275]), // Voice 2
+		Env([0.0, 1.1, 0.0], [1100, 550]),
+		Env([0.0, 1.1, 0.0], [825, 825]),
+		Env([0.0, 1.1, 0.0], [825, 825]),
+		Env([0.0, 1.1, 0.0], [550, 1100]),
+		Env([0.0, 1.1, 0.0], [275, 1375])
+	],
+	[
+		Env([0.0, 1.1, 0.0], [100, 500]), // Voice 3
+		Env([0.0, 1.1, 0.0], [550, 1100]),
+		Env([0.0, 1.1, 0.0], [200, 400]),
+		Env([0.0, 1.1, 0.0], [300, 300]),
+		Env([0.0, 1.1, 0.0], [400, 200]),
+		Env([0.0, 1.1, 0.0], [500, 100])
+	],
+	[
+		Env([0.0, 1.1, 0.0], [100, 500]), // Voice 4
+		Env([0.0, 1.1, 0.0], [550, 1100]),
+		Env([0.0, 1.1, 0.0], [200, 400]),
+		Env([0.0, 1.1, 0.0], [300, 300]),
+		Env([0.0, 1.1, 0.0], [400, 200]),
+		Env([0.0, 1.1, 0.0], [500, 100])
+	],
+
 ],
 
 // Amplitudes
 amplitudes = [
-	[0.05, 0.05, 0.05, 0.05, 0.05, 0.05],
-	[0.025, 0.025, 0.025, 0.025, 0.025, 0.025],
-	[0.025, 0.025, 0.025, 0.025, 0.025, 0.025],
-	[0.03, 0.03, 0.03, 0.03, 0.03, 0.03],
-	[0.03, 0.03, 0.03, 0.03, 0.03, 0.03],
-	[0.05, 0.05, 0.05, 0.05, 0.05, 0.05],
+	[0.02, 0.02, 0.03, 0.03, 0.02, 0.02],
+	[0.01, 0.01, 0.02, 0.02, 0.01, 0.01],
+	[0.005, 0.005, 0.01, 0.01, 0.005, 0.005],
+	[0.005, 0.005, 0.01, 0.01, 0.005, 0.005],
 ],
 
 // Pan positions
