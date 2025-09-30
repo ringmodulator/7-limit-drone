@@ -87,12 +87,12 @@ freqs = [ // oscillator frequencies
 		septimalMinorThird * rrand(0.999, 1.001)
 	],
 	[
-		(minorSeventh / 2), // voice 4
-		(minorSeventh / 2),
-		minorSeventh,
-		minorSeventh,
-		minorSeventh * rrand(0.999, 1.001),
-		minorSeventh * rrand(0.999, 1.001)
+		(minorSeventh * 16) * rrand(0.999, 1.001),
+		(minorSeventh * 16) * rrand(0.999, 1.001),
+		(minorSeventh * 16) * rrand(0.999, 1.001),
+		(minorSeventh * 16) * rrand(0.999, 1.001),
+		(minorSeventh * 16) * rrand(0.999, 1.001),
+		(minorSeventh * 16) * rrand(0.999, 1.001)
 	],
 ],
 
@@ -122,23 +122,24 @@ ffreqs = [ // filter frequencies
 		(septimalMinorThird * 16) * rrand(0.999, 1.001)
 	],
 	[
-		(minorSeventh * 4) * rrand(0.999, 1.001), // voice 5
-		(minorSeventh * 4) * rrand(0.999, 1.001),
-		(minorSeventh * 8) * rrand(0.999, 1.001),
-		(minorSeventh * 8) * rrand(0.999, 1.001),
-		(minorSeventh * 16) * rrand(0.999, 1.001),
-		(minorSeventh * 16) * rrand(0.999, 1.001)
+		(minorSeventh * 32) * rrand(0.999, 1.001), // voice 4 (high minor 7th)
+		(minorSeventh * 32) * rrand(0.999, 1.001),
+		(perfectFifth * 32) * rrand(0.999, 1.001),
+		(perfectFifth * 32) * rrand(0.999, 1.001),
+		(root * 32) * rrand(0.999, 1.001),
+		(root * 32) * rrand(0.999, 1.001)
 	]
+
 ],
 
 // How long to wait until the next chord is played
-waitTimes = [0, 150, 450, 450],
+waitTimes = [0, 150, 450, 900],
 
 // Attack times
 attackTimes = [60, 90, 60, 60, 60],
 
 // Sustain times
-sustainTimes = [1530, 1470, 780, 780],
+sustainTimes = [1530, 1470, 1380, 780],
 
 // Release times
 releaseTimes = [60, 60, 60, 60],
@@ -161,20 +162,20 @@ resEnvs = [ // Resonance envelopes
 		Env([0.0, 1.1, 0.0], [275, 1375])
 	],
 	[
-		Env([0.0, 1.1, 0.0], [100, 500]), // Voice 3
-		Env([0.0, 1.1, 0.0], [550, 1100]),
-		Env([0.0, 1.1, 0.0], [200, 400]),
-		Env([0.0, 1.1, 0.0], [300, 300]),
-		Env([0.0, 1.1, 0.0], [400, 200]),
-		Env([0.0, 1.1, 0.0], [500, 100])
+		Env([0.0, 1.1, 0.0], [250, 1250]), // Voice 3: total time 1500
+		Env([0.0, 1.1, 0.0], [500, 1000]),
+		Env([0.0, 1.1, 0.0], [750, 750]),
+		Env([0.0, 1.1, 0.0], [750, 750]),
+		Env([0.0, 1.1, 0.0], [1000, 500]),
+		Env([0.0, 1.1, 0.0], [1250, 250])
 	],
 	[
-		Env([0.0, 1.1, 0.0], [100, 500]), // Voice 4
-		Env([0.0, 1.1, 0.0], [550, 1100]),
-		Env([0.0, 1.1, 0.0], [200, 400]),
-		Env([0.0, 1.1, 0.0], [300, 300]),
-		Env([0.0, 1.1, 0.0], [400, 200]),
-		Env([0.0, 1.1, 0.0], [500, 100])
+		Env([0.8, 1.3, 0.8], [100, 500]), // Voice 4
+		Env([0.8, 1.3, 0.8], [400, 200]),
+		Env([0.8, 1.3, 0.8], [300, 300]),
+		Env([0.8, 1.3, 0.8], [300, 300]),
+		Env([0.8, 1.3, 0.8], [400, 200]),
+		Env([0.8, 1.3, 0.8], [500, 100])
 	],
 
 ],
@@ -184,12 +185,12 @@ amplitudes = [
 	[0.02, 0.02, 0.03, 0.03, 0.02, 0.02],
 	[0.01, 0.01, 0.02, 0.02, 0.01, 0.01],
 	[0.005, 0.005, 0.01, 0.01, 0.005, 0.005],
-	[0.005, 0.005, 0.01, 0.01, 0.005, 0.005],
+	[0.0005, 0.0005, 0.0005, 0.0005, 0.0005, 0.0005],
 ],
 
 // Pan positions
 panPositions = [
-	[-1.0, 1.0, -0.5, 0.5, -1.0, 1.0],
+	[-1.0, 1.0, 1.0, 1.0, -1.0, 1.0],
 ];
 
 r = Routine({
