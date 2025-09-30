@@ -160,7 +160,7 @@ ffreqs = [ // filter frequencies
 ],
 
 // How long to wait until the next chord is played
-waitTimes = [180, 195, 195, 195, 195],
+waitTimes = [60, 195, 195, 195, 195],
 
 // Attack times
 attackTimes = [0.01, 180, 180, 180, 180, 180],
@@ -173,7 +173,7 @@ releaseTimes = [900, 180, 180, 180, 180, 180],
 
 resEnvs = [ // Resonance envelopes
 	[
-		Env([0.8, 1.3, 1.0, 0.5], [180, 360, 720]), // voice 1 (high minor 7th)
+		Env([0.8, 1.3, 1.0, 0.5], [60, 360, 720]), // voice 1 (high minor 7th)
 		Env([0.8, 1.3, 1.0, 0.5], [180, 360, 720]),
 		Env([0.8, 1.3, 1.0, 0.5], [180, 360, 720]),
 		Env([0.8, 1.3, 1.0, 0.5], [360, 180, 720]),
