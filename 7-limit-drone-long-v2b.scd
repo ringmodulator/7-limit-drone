@@ -86,14 +86,6 @@ freqs = [ // oscillator frequencies
 		septimalMinorThird * rrand(0.999, 1.001),
 		septimalMinorThird * rrand(0.999, 1.001)
 	],
-	[
-		(minorSeventh * 16) * rrand(0.999, 1.001),
-		(minorSeventh * 16) * rrand(0.999, 1.001),
-		(minorSeventh * 16) * rrand(0.999, 1.001),
-		(minorSeventh * 16) * rrand(0.999, 1.001),
-		(minorSeventh * 16) * rrand(0.999, 1.001),
-		(minorSeventh * 16) * rrand(0.999, 1.001)
-	],
 ],
 
 ffreqs = [ // filter frequencies
@@ -121,28 +113,19 @@ ffreqs = [ // filter frequencies
 		(septimalMinorThird * 16) * rrand(0.999, 1.001),
 		(septimalMinorThird * 16) * rrand(0.999, 1.001)
 	],
-	[
-		(minorSeventh * 32) * rrand(0.999, 1.001), // voice 4 (high minor 7th)
-		(minorSeventh * 32) * rrand(0.999, 1.001),
-		(perfectFifth * 32) * rrand(0.999, 1.001),
-		(perfectFifth * 32) * rrand(0.999, 1.001),
-		(root * 32) * rrand(0.999, 1.001),
-		(root * 32) * rrand(0.999, 1.001)
-	]
-
 ],
 
 // How long to wait until the next chord is played
-waitTimes = [0, 150, 450, 900],
+waitTimes = [0, 150, 450],
 
 // Attack times
-attackTimes = [60, 90, 60, 60, 60],
+attackTimes = [60, 90, 60, 60],
 
 // Sustain times
-sustainTimes = [1530, 1470, 1380, 780],
+sustainTimes = [1530, 1470, 1380],
 
 // Release times
-releaseTimes = [60, 60, 60, 60],
+releaseTimes = [60, 60, 60],
 
 resEnvs = [ // Resonance envelopes
 	[
@@ -169,15 +152,6 @@ resEnvs = [ // Resonance envelopes
 		Env([0.0, 1.1, 0.0], [1000, 500]),
 		Env([0.0, 1.1, 0.0], [1250, 250])
 	],
-	[
-		Env([0.8, 1.3, 0.8], [100, 500]), // Voice 4
-		Env([0.8, 1.3, 0.8], [400, 200]),
-		Env([0.8, 1.3, 0.8], [300, 300]),
-		Env([0.8, 1.3, 0.8], [300, 300]),
-		Env([0.8, 1.3, 0.8], [400, 200]),
-		Env([0.8, 1.3, 0.8], [500, 100])
-	],
-
 ],
 
 // Amplitudes
@@ -185,7 +159,6 @@ amplitudes = [
 	[0.02, 0.02, 0.03, 0.03, 0.02, 0.02],
 	[0.01, 0.01, 0.02, 0.02, 0.01, 0.01],
 	[0.005, 0.005, 0.01, 0.01, 0.005, 0.005],
-	[0.0005, 0.0005, 0.0005, 0.0005, 0.0005, 0.0005],
 ],
 
 // Pan positions
