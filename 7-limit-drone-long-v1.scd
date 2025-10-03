@@ -33,7 +33,7 @@ SynthDef(
 		gate
 	);
 	snd = MoogLadder.ar(in: snd, ffreq: ffreq, res: resEnvGen);
-	snd = snd * EnvGen.kr(env, gate, doneAction: Done.freeSelf) * amp;
+	snd = snd * EnvGen.kr(env, gate, doneAction: Done.freeSelf) * amp * 4; // added multiplier for convenience
 	snd = Pan2.ar(snd, pan);
 	Out.ar(out, snd);
 	}
@@ -173,12 +173,12 @@ releaseTimes = [1020, 180, 180, 180, 180, 180],
 
 resEnvs = [ // Resonance envelopes
 	[
-		Env([0.8, 1.3, 1.0, 0.5], [60, 360, 840]), // voice 1 (high minor 7th)
-		Env([0.8, 1.3, 1.0, 0.5], [60, 360, 840]),
-		Env([0.8, 1.3, 1.0, 0.5], [60, 360, 840]),
-		Env([0.8, 1.3, 1.0, 0.5], [60, 180, 840]),
-		Env([0.8, 1.3, 1.0, 0.5], [60, 180, 840]),
-		Env([0.8, 1.3, 1.0, 0.5], [60, 180, 840])
+		Env([0.8, 1.1, 1.0, 0.5], [60, 360, 840]), // voice 1 (high minor 7th)
+		Env([0.8, 1.1, 1.0, 0.5], [60, 360, 840]),
+		Env([0.8, 1.1, 1.0, 0.5], [60, 360, 840]),
+		Env([0.8, 1.1, 1.0, 0.5], [60, 180, 840]),
+		Env([0.8, 1.1, 1.0, 0.5], [60, 180, 840]),
+		Env([0.8, 1.1, 1.0, 0.5], [60, 180, 840])
 	],
 	[
 		Env([0.8, 1.2, 0.8], [600, 1260]), // voice 2 (bass root)

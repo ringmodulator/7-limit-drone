@@ -19,30 +19,16 @@ SynthDef.new(\piano, {
 }).add;
 )
 
-// Play a chord
-
-(
-Synth.new(\piano, [\buf, ~notes[0].bufnum, \rate, 1, \amp, 0.05]);
-Synth.new(\piano, [\buf, ~notes[1].bufnum, \rate, 1, \amp, 0.05]);
-Synth.new(\piano, [\buf, ~notes[2].bufnum, \rate, 1, \amp, 0.05]);
-Synth.new(\piano, [\buf, ~notes[3].bufnum, \rate, 1, \amp, 0.05]);
-Synth.new(\piano, [\buf, ~notes[4].bufnum, \rate, 1, \amp, 0.05]);
-Synth.new(\piano, [\buf, ~notes[5].bufnum, \rate, 1, \amp, 0.05]);
-Synth.new(\piano, [\buf, ~notes[8].bufnum, \rate, 1, \amp, 0.05]);
-Synth.new(\piano, [\buf, ~notes[9].bufnum, \rate, 1, \amp, 0.05]);
-)
-
 // Play random notes, without repeating notes
 // Can also use Pwrand to add weights to randomness
 // Could use Ptuple to select chords to play.
-
 (
 p = Pbind(
 	\instrument, \piano,
-	\amp, Pwhite(0.2, 0.5),
+	\amp, Pwhite(0.1, 0.2),
 	\buf, Pxrand(~notes, inf),
-	\dur, Pwhite(0.0, 5.0)
-	\pan, Pwhite(-0.8, 0.8),
+	\dur, Pwhite(0.0, 3.0),
+	\pan, Pwhite(-1.0, 1.0),
 ).play;
 )
 

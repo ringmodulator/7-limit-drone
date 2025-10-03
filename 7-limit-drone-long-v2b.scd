@@ -85,7 +85,7 @@ freqs = [ // oscillator frequencies
 		septimalMinorThird,
 		septimalMinorThird * rrand(0.999, 1.001),
 		septimalMinorThird * rrand(0.999, 1.001)
-	],
+	]
 ],
 
 ffreqs = [ // filter frequencies
@@ -112,7 +112,7 @@ ffreqs = [ // filter frequencies
 		(septimalMinorThird * 8) * rrand(0.999, 1.001),
 		(septimalMinorThird * 16) * rrand(0.999, 1.001),
 		(septimalMinorThird * 16) * rrand(0.999, 1.001)
-	],
+	]
 ],
 
 // How long to wait until the next chord is played
@@ -144,6 +144,7 @@ resEnvs = [ // Resonance envelopes
 		Env([0.0, 0.9, 0.0], [550, 1100]),
 		Env([0.0, 0.9, 0.0], [275, 1375])
 	],
+	[
 		Env([0.0, 0.9, 0.0], [250, 1250]), // Voice 3
 		Env([0.0, 0.9, 0.0], [500, 1000]),
 		Env([0.0, 0.9, 0.0], [750, 750]),
@@ -155,9 +156,9 @@ resEnvs = [ // Resonance envelopes
 
 // Amplitudes
 amplitudes = [
+	[0.03, 0.03, 0.04, 0.04, 0.03, 0.03],
 	[0.02, 0.02, 0.03, 0.03, 0.02, 0.02],
-	[0.01, 0.01, 0.02, 0.02, 0.01, 0.01],
-	[0.005, 0.005, 0.01, 0.01, 0.005, 0.005],
+	[0.02, 0.02, 0.03, 0.03, 0.02, 0.02],
 ],
 
 // Pan positions
