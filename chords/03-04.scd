@@ -33,7 +33,7 @@ SynthDef(
 		gate
 	);
 	snd = MoogLadder.ar(in: snd, ffreq: ffreq, res: resEnvGen);
-	snd = snd * EnvGen.kr(env, gate, doneAction: Done.freeSelf) * amp;
+	snd = snd * EnvGen.kr(env, gate, doneAction: Done.freeSelf) * amp * 4; // added multiplier for convenience
 	snd = Pan2.ar(snd, pan);
 	Out.ar(out, snd);
 	}
@@ -44,6 +44,8 @@ SynthDef(
 (
 // Calculate note frequencies
 var root = 65.41, // Low C
+// var root = 73.42, // Low D
+// var root = 98, // Low G
 minorSecond = root * (15/14),
 majorSecond = root * (8/7),
 septimalMinorThird = root * (7/6), // tune minor third in logic to this
@@ -57,55 +59,93 @@ minorSixth = root * (8/5),
 majorSixth = root * (5/3),
 minorSeventh = root * (7/4),
 majorSeventh = root * (15/8),
-octave = root * 2,
 
 freqs = [ // oscillator frequencies
 	[
-		(minorSeventh * 16) * rrand(0.999, 1.001), // voice 1 (high minor 7th) - this should be quiet and silvery
-		(minorSeventh * 16) * rrand(0.999, 1.001),
-		(minorSeventh * 16) * rrand(0.999, 1.001),
-		(minorSeventh * 16) * rrand(0.999, 1.001)
-	]
+		(perfectFifth / 2) * rrand(0.999, 1.001),  // voice 3 (fifth)
+		(perfectFifth / 2) * rrand(0.999, 1.001),
+		perfectFifth * rrand(0.999, 1.001),
+		perfectFifth * rrand(0.999, 1.001),
+		(perfectFifth * 8) * rrand(0.999, 1.001),
+		(perfectFifth * 8) * rrand(0.999, 1.001)
+	],
+	[
+		(septimalMinorThird / 2) * rrand(0.999, 1.001), // voice 4 (septimal minor third) - I think these voices should possibly come in at less regular intervals so they are more surprising.
+		(septimalMinorThird / 2) * rrand(0.999, 1.001),
+		septimalMinorThird * rrand(0.999, 1.001),
+		septimalMinorThird * rrand(0.999, 1.001),
+		(septimalMinorThird * 8) * rrand(0.999, 1.001),
+		(septimalMinorThird * 8) * rrand(0.999, 1.001)
+	],
 ],
 
 ffreqs = [ // filter frequencies
 	[
-		(minorSeventh * 32) * rrand(0.999, 1.001), // voice 1 (high minor 7th)
-		(minorSeventh * 32) * rrand(0.999, 1.001),
-		(root * 32) * rrand(0.999, 1.001),
-		(root * 32) * rrand(0.999, 1.001)
+		(perfectFifth * 16) * rrand(0.999, 1.001), // voice 3 (fifth)
+		(perfectFifth * 16) * rrand(0.999, 1.001),
+		(perfectFifth * 4) * rrand(0.999, 1.001),
+		(perfectFifth * 4) * rrand(0.999, 1.001),
+		(perfectFifth * 16) * rrand(0.999, 1.001),
+		(perfectFifth * 16) * rrand(0.999, 1.001)
+	],
+	[
+		(septimalMinorThird * 8) * rrand(0.999, 1.001), // voice 4 (septimal minor 3rd)
+		(septimalMinorThird * 16) * rrand(0.999, 1.001),
+		(septimalMinorThird * 4) * rrand(0.999, 1.001),
+		(septimalMinorThird * 4) * rrand(0.999, 1.001),
+		(septimalMinorThird * 8) * rrand(0.999, 1.001),
+		(septimalMinorThird * 16) * rrand(0.999, 1.001)
 	]
 ],
 
 // How long to wait until the next chord is played
-waitTimes = [0],
+waitTimes = [120],
 
 // Attack times
-attackTimes = [0.01],
+attackTimes = [0.01, 0.01],
 
 // Sustain times
-sustainTimes = [120],
+sustainTimes = [230, 230, 230, 230, 230, 300, 120],
 
 // Release times
-releaseTimes = [300],
+releaseTimes = [1020, 90, 180, 180, 180, 180, 180, 180, 180],
 
 resEnvs = [ // Resonance envelopes
 	[
-		Env([0.8, 1.3, 1.0, 0.5], [60, 120, 240]), // voice 1 (high minor 7th)
-		Env([0.8, 1.3, 1.0, 0.5], [60, 120, 240]),
-		Env([0.8, 1.3, 1.0, 0.5], [120, 60, 240]),
-		Env([0.8, 1.3, 1.0, 0.5], [120, 60, 240])
+		Env([0.0, 1.1, 0.0, 1.3, 0.0], [0.2, 0.2, 55, 265]), // voice 3
+		Env([0.0, 1.1, 0.0, 1.3, 0.0], [0.2, 0.2, 110, 210]),
+		Env([0.0, 1.1, 0.0, 0.5, 0.0], [0.2, 0.2, 160, 160]),
+		Env([0.0, 1.1, 0.0, 0.5, 0.0], [0.2, 0.2, 160, 160]),
+		Env([0.0, 1.1, 0.0, 1.3, 0.0], [0.2, 0.2, 210, 110]),
+		Env([0.0, 1.1, 0.0, 1.3, 0.0], [0.2, 0.2, 265, 55])
+	],
+	[
+		Env([0.0, 1.1, 0.0, 1.3, 0.0], [0.2, 0.2, 55, 265]), // voice 4
+		Env([0.0, 1.1, 0.0, 1.3, 0.0], [0.2, 0.2, 110, 210]),
+		Env([0.0, 1.1, 0.0, 0.5, 0.0], [0.2, 0.2, 160, 160]),
+		Env([0.0, 1.1, 0.0, 0.5, 0.0], [0.2, 0.2, 160, 160]),
+		Env([0.0, 1.1, 0.0, 1.3, 0.0], [0.2, 0.2, 210, 110]),
+		Env([0.0, 1.1, 0.0, 1.3, 0.0], [0.2, 0.2, 265, 55])
 	]
 ],
 
 // Amplitudes
 amplitudes = [
-	[0.008, 0.008, 0.008, 0.008],
+	[0.05, 0.05, 0.1, 0.1, 0.03, 0.03],
+	[0.05, 0.05, 0.2, 0.2, 0.03, 0.03],
 ],
 
 // Pan positions
 panPositions = [
-	[-1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0]
 ];
 
 r = Routine({

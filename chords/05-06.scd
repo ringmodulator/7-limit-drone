@@ -33,7 +33,7 @@ SynthDef(
 		gate
 	);
 	snd = MoogLadder.ar(in: snd, ffreq: ffreq, res: resEnvGen);
-	snd = snd * EnvGen.kr(env, gate, doneAction: Done.freeSelf) * amp;
+	snd = snd * EnvGen.kr(env, gate, doneAction: Done.freeSelf) * amp * 4; // added multiplier for convenience
 	snd = Pan2.ar(snd, pan);
 	Out.ar(out, snd);
 	}
@@ -44,6 +44,8 @@ SynthDef(
 (
 // Calculate note frequencies
 var root = 65.41, // Low C
+// var root = 73.42, // Low D
+// var root = 98, // Low G
 minorSecond = root * (15/14),
 majorSecond = root * (8/7),
 septimalMinorThird = root * (7/6), // tune minor third in logic to this
@@ -57,61 +59,86 @@ minorSixth = root * (8/5),
 majorSixth = root * (5/3),
 minorSeventh = root * (7/4),
 majorSeventh = root * (15/8),
-octave = root * 2,
 
 freqs = [ // oscillator frequencies
 	[
-		(perfectFifth / 2) * rrand(0.999, 1.001), // voice 6 (fifth and minor seventh)
-		(minorSeventh / 2) * rrand(0.999, 1.001),
-		minorSeventh * rrand(0.999, 1.001),
-		perfectFifth * rrand(0.999, 1.001),
-		(perfectFifth * 8) * rrand(0.999, 1.001),
+		(augmentedFourth / 2) * rrand(0.999, 1.001), // voice 5 (tritone) - I think this is effective when it comes in if slightly cheesy / horror / King Crimson.
+		(augmentedFourth / 2) * rrand(0.999, 1.001),
+		augmentedFourth * rrand(0.999, 1.001),
+		augmentedFourth * rrand(0.999, 1.001),
+		(augmentedFourth * 8) * rrand(0.999, 1.001),
+		(augmentedFourth * 8) * rrand(0.999, 1.001)
+	],
+	[
+		(majorSecond / 2) * rrand(0.999, 1.001), // voice 6 (major second and major seventh) - I like the effect of different notes in each ear, not 100% sure these are the right ones. It's also making sure that the panning is working right. I feel like I'm hearing higher notes on the right side.
+		(majorSeventh / 2) * rrand(0.999, 1.001),
+		majorSecond * rrand(0.999, 1.001),
+		majorSeventh * rrand(0.999, 1.001),
+		(minorSecond * 8) * rrand(0.999, 1.001),
 		(minorSeventh * 8) * rrand(0.999, 1.001)
 	]
 ],
 
 ffreqs = [ // filter frequencies
 	[
-		(perfectFifth * 8) * rrand(0.999, 1.001), // voice 6 (fifth and minor seventh)
-		(minorSeventh * 8) * rrand(0.999, 1.001),
-		(minorSeventh * 4) * rrand(0.999, 1.001),
-		(perfectFifth * 4) * rrand(0.999, 1.001),
-		(perfectFifth * 16) * rrand(0.999, 1.001),
-		(minorSeventh * 16) * rrand(0.999, 1.001)
+		(augmentedFourth * 8) * rrand(0.999, 1.001), // voice 5 (tritone)
+		(augmentedFourth * 16) * rrand(0.999, 1.001),
+		(augmentedFourth * 4) * rrand(0.999, 1.001),
+		(augmentedFourth * 4) * rrand(0.999, 1.001),
+		(augmentedFourth * 8) * rrand(0.999, 1.001),
+		(augmentedFourth * 16) * rrand(0.999, 1.001)
+	],
+	[
+		(majorSecond * 8) * rrand(0.999, 1.001), // voice 6 (major second and major seventh)
+		(majorSeventh * 16) * rrand(0.999, 1.001),
+		(majorSecond * 4) * rrand(0.999, 1.001),
+		(majorSeventh * 4) * rrand(0.999, 1.001),
+		(majorSecond * 8) * rrand(0.999, 1.001),
+		(majorSeventh * 16) * rrand(0.999, 1.001)
 	]
 ],
 
 // How long to wait until the next chord is played
-waitTimes = [0],
+waitTimes = [120],
 
 // Attack times
-attackTimes = [60],
+attackTimes = [0.01, 0.01],
 
 // Sustain times
-sustainTimes = [180],
+sustainTimes = [230, 230],
 
 // Release times
-releaseTimes = [60],
+releaseTimes = [180, 180],
 
 resEnvs = [ // Resonance envelopes
 	[
-		Env([0.0, 1.1, 0.0], [60, 240]), // voice 6 (fifth and minor seventh)
-		Env([0.0, 1.1, 0.0], [120, 180]),
-		Env([0.0, 0.5, 0.0], [150, 150]),
-		Env([0.0, 0.5, 0.0], [150, 150]),
-		Env([0.0, 1.0, 0.0], [180, 120]),
-		Env([0.0, 1.0, 0.0], [240, 60])
+		Env([0.0, 1.1, 0.0, 1.3, 0.0], [0.2, 0.2, 55, 265]), // voice 5
+		Env([0.0, 1.1, 0.0, 1.3, 0.0], [0.2, 0.2, 110, 210]),
+		Env([0.0, 1.1, 0.0, 0.5, 0.0], [0.2, 0.2, 160, 160]),
+		Env([0.0, 1.1, 0.0, 0.5, 0.0], [0.2, 0.2, 160, 160]),
+		Env([0.0, 1.1, 0.0, 1.3, 0.0], [0.2, 0.2, 210, 110]),
+		Env([0.0, 1.1, 0.0, 1.3, 0.0], [0.2, 0.2, 265, 55])
+	],
+	[
+		Env([0.0, 1.1, 0.0, 1.3, 0.0], [0.2, 0.2, 55, 265]), // voice 6
+		Env([0.0, 1.1, 0.0, 1.3, 0.0], [0.2, 0.2, 110, 210]),
+		Env([0.0, 1.1, 0.0, 0.5, 0.0], [0.2, 0.2, 160, 160]),
+		Env([0.0, 1.1, 0.0, 0.5, 0.0], [0.2, 0.2, 160, 160]),
+		Env([0.0, 1.1, 0.0, 1.3, 0.0], [0.2, 0.2, 210, 110]),
+		Env([0.0, 1.1, 0.0, 1.3, 0.0], [0.2, 0.2, 265, 55])
 	]
 ],
 
 // Amplitudes
 amplitudes = [
-	[0.05, 0.05, 0.2, 0.2, 0.02, 0.02]
+	[0.05, 0.05, 0.2, 0.2, 0.03, 0.03],
+	[0.05, 0.05, 0.2, 0.2, 0.03, 0.03]
 ],
 
 // Pan positions
 panPositions = [
-	[-1.0, 1.0, -0.5, 0.5, -1.0, 1.0]
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0]
 ];
 
 r = Routine({
