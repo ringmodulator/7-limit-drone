@@ -33,7 +33,7 @@ SynthDef(
 		gate
 	);
 	snd = MoogLadder.ar(in: snd, ffreq: ffreq, res: resEnvGen);
-	snd = snd * EnvGen.kr(env, gate, doneAction: Done.freeSelf) * amp;
+	snd = snd * EnvGen.kr(env, gate, doneAction: Done.freeSelf) * amp * 4; // added multiplier for convenience
 	snd = Pan2.ar(snd, pan);
 	Out.ar(out, snd);
 	}
@@ -44,6 +44,8 @@ SynthDef(
 (
 // Calculate note frequencies
 var root = 65.41, // Low C
+// var root = 73.42, // Low D
+// var root = 98, // Low G
 minorSecond = root * (15/14),
 majorSecond = root * (8/7),
 septimalMinorThird = root * (7/6), // tune minor third in logic to this
@@ -57,61 +59,140 @@ minorSixth = root * (8/5),
 majorSixth = root * (5/3),
 minorSeventh = root * (7/4),
 majorSeventh = root * (15/8),
-octave = root * 2,
 
 freqs = [ // oscillator frequencies
 	[
-		(augmentedFourth / 2) * rrand(0.999, 1.001), // voice 5 (tritone)
-		(augmentedFourth / 2) * rrand(0.999, 1.001),
-		augmentedFourth * rrand(0.999, 1.001),
-		augmentedFourth * rrand(0.999, 1.001),
-		(augmentedFourth * 8) * rrand(0.999, 1.001),
-		(augmentedFourth * 8) * rrand(0.999, 1.001)
+		(minorSeventh / 2) * rrand(0.9999, 1.0001), // voice 5 (Minor seventh)
+		(minorSeventh / 2) * rrand(0.9999, 1.0001),
+		minorSeventh * rrand(0.999, 1.001),
+		minorSeventh * rrand(0.999, 1.001),
+		(minorSeventh * 8) * rrand(0.999, 1.001),
+		(minorSeventh * 8) * rrand(0.999, 1.001)
 	]
 ],
 
 ffreqs = [ // filter frequencies
 	[
-		(augmentedFourth * 8) * rrand(0.999, 1.001), // voice 5 (tritone)
-		(augmentedFourth * 16) * rrand(0.999, 1.001),
-		(augmentedFourth * 4) * rrand(0.999, 1.001),
-		(augmentedFourth * 4) * rrand(0.999, 1.001),
-		(augmentedFourth * 8) * rrand(0.999, 1.001),
-		(augmentedFourth * 16) * rrand(0.999, 1.001)
-	]
+		(minorSeventh * 4) * rrand(0.999, 1.001), // voice 5 (minor 7th)
+		(minorSeventh * 4) * rrand(0.999, 1.001),
+		(minorSeventh * 8) * rrand(0.999, 1.001),
+		(minorSeventh * 8) * rrand(0.999, 1.001),
+		(minorSeventh * 16) * rrand(0.999, 1.001),
+		(minorSeventh * 16) * rrand(0.999, 1.001)
+	],
 ],
 
 // How long to wait until the next chord is played
 waitTimes = [0],
 
 // Attack times
-attackTimes = [60],
+attackTimes = [40],
 
 // Sustain times
-sustainTimes = [180],
+sustainTimes = [380],
 
 // Release times
-releaseTimes = [60],
+releaseTimes = [180],
 
 resEnvs = [ // Resonance envelopes
 	[
-		Env([0.0, 1.1, 0.0], [60, 240]), // voice 5 (tritone)
-		Env([0.0, 1.1, 0.0], [120, 180]),
-		Env([0.0, 0.5, 0.0], [150, 150]),
-		Env([0.0, 0.5, 0.0], [150, 150]),
-		Env([0.0, 1.0, 0.0], [180, 120]),
-		Env([0.0, 1.0, 0.0], [240, 60])
+		Env([0.8, 1.15, 1.0, 0.5], [59, 361, 960]), // voice 1
+		Env([0.8, 1.15, 1.0, 0.5], [59, 361, 960]),
+		Env([0.8, 1.15, 1.0, 0.5], [59, 361, 960]),
+		Env([0.8, 1.15, 1.0, 0.5], [59, 961, 360]),
+		Env([0.8, 1.15, 1.0, 0.5], [59, 961, 360]),
+		Env([0.8, 1.15, 1.0, 0.5], [59, 961, 360])
+	],
+	[
+		Env([0.0, 1.2, 0.0, 1.3, 0.5], [0.02, 0.02, 1035, 345]), // voice 2 (1380 seconds)
+		Env([0.0, 1.2, 0.0, 1.3, 0.5], [0.02, 0.02, 1035, 345]),
+		Env([0.0, 1.2, 0.0, 1.3, 0.5], [0.02, 0.02, 690, 690]),
+		Env([0.0, 1.2, 0.0, 1.3, 0.5], [0.02, 0.02, 690, 690]),
+		Env([0.0, 1.2, 0.0, 1.15, 0.5], [0.02, 0.02, 135, 1245]),
+		Env([0.0, 1.2, 0.0, 1.15, 0.5], [0.02, 0.02, 134, 1246]),
+	],
+	[
+		Env([0.0, 1.0, 0.0], [200, 600]), // voice 3
+		Env([0.0, 1.0, 0.0], [600, 200]),
+		Env([0.0, 1.0, 0.0], [400, 400]),
+		Env([0.0, 1.0, 0.0], [400, 400]),
+		Env([0.0, 1.3, 0.0], [132, 278]),
+		Env([0.0, 1.3, 0.0], [133, 277])
+	],
+	[
+		Env([0.0, 1.15, 0.0], [150, 450]), // voice 4
+		Env([0.0, 1.15, 0.0], [450, 150]),
+		Env([0.0, 0.5, 0.0], [250, 350]),
+		Env([0.0, 0.5, 0.0], [350, 250]),
+		Env([0.0, 1.3, 0.0], [100, 310]),
+		Env([0.0, 1.3, 0.0], [101, 309])
+	],
+	[
+		Env([0.0, 1.15, 0.0], [150, 450]), // voice 5
+		Env([0.0, 1.15, 0.0], [450, 150]),
+		Env([0.0, 0.5, 0.0], [250, 350]),
+		Env([0.0, 0.5, 0.0], [350, 250]),
+		Env([0.0, 1.3, 0.0], [190, 220]),
+		Env([0.0, 1.3, 0.0], [190, 220])
+	],
+	[
+		Env([0.0, 1.15, 0.0], [150, 450]), // voice 6
+		Env([0.0, 1.15, 0.0], [450, 150]),
+		Env([0.0, 0.5, 0.0], [250, 350]),
+		Env([0.0, 0.5, 0.0], [350, 250]),
+		Env([0.0, 1.3, 0.0], [130, 280]),
+		Env([0.0, 1.3, 0.0], [131, 279])
+	],
+	[
+		Env([0.0, 1.15, 0.0], [100, 310]), // voice 7
+		Env([0.0, 1.15, 0.0], [310, 100]),
+		Env([0.0, 0.5, 0.0], [200, 210]),
+		Env([0.0, 0.5, 0.0], [210, 200]),
+		Env([0.0, 1.3, 0.0], [130, 280]),
+		Env([0.0, 1.3, 0.0], [130, 280])
+	],
+	[
+		Env([0.0, 1.15, 0.0], [105, 405]), // voice 8
+		Env([0.0, 1.15, 0.0], [405, 105]),
+		Env([0.0, 1.0, 0.0], [255, 255]),
+		Env([0.0, 1.0, 0.0], [255, 255]),
+		Env([0.0, 1.15, 0.0], [110, 400]),
+		Env([0.0, 1.15, 0.0], [400, 110])
+	],
+	[
+		Env([0.0, 1.0, 0.0], [400, 110]), // voice 9
+		Env([0.0, 1.0, 0.0], [110, 400]),
+		Env([0.0, 1.0, 0.0], [105, 405]),
+		Env([0.0, 1.0, 0.0], [405, 105]),
+		Env([0.0, 1.0, 0.0], [255, 255]),
+		Env([0.0, 1.0, 0.0], [255, 255])
 	]
 ],
 
 // Amplitudes
 amplitudes = [
-	[0.05, 0.05, 0.2, 0.2, 0.02, 0.02]
+	[0.004],
+	[0.1, 0.1, 0.05, 0.05, 0.025, 0.025],
+	([0.02, 0.02, 0.025, 0.025, 0.005, 0.005] * 2),
+	([0.005, 0.005, 0.005, 0.005, 0.0025, 0.0025] * 2),
+	([0.005, 0.005, 0.0025, 0.0025, 0.0025, 0.0025] * 2),
+	([0.005, 0.005, 0.005, 0.005, 0.0025, 0.0025] * 2),
+	([0.03, 0.03, 0.05, 0.05, 0.002, 0.002] * 2),
+	([0.03, 0.03, 0.05, 0.05, 0.005, 0.005] * 2),
+	([0.02, 0.02, 0.025, 0.025, 0.005, 0.005])
 ],
 
 // Pan positions
 panPositions = [
-	[-1.0, 1.0, -0.5, 0.5, -1.0, 1.0]
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
 ];
 
 r = Routine({

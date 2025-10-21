@@ -33,7 +33,7 @@ SynthDef(
 		gate
 	);
 	snd = MoogLadder.ar(in: snd, ffreq: ffreq, res: resEnvGen);
-	snd = snd * EnvGen.kr(env, gate, doneAction: Done.freeSelf) * amp;
+	snd = snd * EnvGen.kr(env, gate, doneAction: Done.freeSelf) * amp * 4; // added multiplier for convenience
 	snd = Pan2.ar(snd, pan);
 	Out.ar(out, snd);
 	}
@@ -44,6 +44,8 @@ SynthDef(
 (
 // Calculate note frequencies
 var root = 65.41, // Low C
+// var root = 73.42, // Low D
+// var root = 98, // Low G
 minorSecond = root * (15/14),
 majorSecond = root * (8/7),
 septimalMinorThird = root * (7/6), // tune minor third in logic to this
@@ -57,11 +59,12 @@ minorSixth = root * (8/5),
 majorSixth = root * (5/3),
 minorSeventh = root * (7/4),
 majorSeventh = root * (15/8),
-octave = root * 2,
 
 freqs = [ // oscillator frequencies
 	[
-		(minorSeventh * 16) * rrand(0.999, 1.001), // voice 1 (high minor 7th) - this should be quiet and silvery
+		(minorSeventh * 16) * rrand(0.999, 1.001), // voice 1 (high minor 7th)
+		(minorSeventh * 16) * rrand(0.999, 1.001),
+		(minorSeventh * 16) * rrand(0.999, 1.001),
 		(minorSeventh * 16) * rrand(0.999, 1.001),
 		(minorSeventh * 16) * rrand(0.999, 1.001),
 		(minorSeventh * 16) * rrand(0.999, 1.001)
@@ -72,6 +75,8 @@ ffreqs = [ // filter frequencies
 	[
 		(minorSeventh * 32) * rrand(0.999, 1.001), // voice 1 (high minor 7th)
 		(minorSeventh * 32) * rrand(0.999, 1.001),
+		(perfectFifth * 32) * rrand(0.999, 1.001),
+		(perfectFifth * 32) * rrand(0.999, 1.001),
 		(root * 32) * rrand(0.999, 1.001),
 		(root * 32) * rrand(0.999, 1.001)
 	]
@@ -84,28 +89,38 @@ waitTimes = [0],
 attackTimes = [0.01],
 
 // Sustain times
-sustainTimes = [120],
+sustainTimes = [360],
 
 // Release times
-releaseTimes = [300],
+releaseTimes = [1020],
 
 resEnvs = [ // Resonance envelopes
 	[
-		Env([0.8, 1.3, 1.0, 0.5], [60, 120, 240]), // voice 1 (high minor 7th)
-		Env([0.8, 1.3, 1.0, 0.5], [60, 120, 240]),
-		Env([0.8, 1.3, 1.0, 0.5], [120, 60, 240]),
-		Env([0.8, 1.3, 1.0, 0.5], [120, 60, 240])
-	]
+		Env([0.8, 1.15, 1.0, 0.5], [59, 361, 960]), // voice 1
+		Env([0.8, 1.15, 1.0, 0.5], [59, 361, 960]),
+		Env([0.8, 1.15, 1.0, 0.5], [59, 361, 960]),
+		Env([0.8, 1.15, 1.0, 0.5], [59, 961, 360]),
+		Env([0.8, 1.15, 1.0, 0.5], [59, 961, 360]),
+		Env([0.8, 1.15, 1.0, 0.5], [59, 961, 360])
+	],
 ],
 
 // Amplitudes
 amplitudes = [
-	[0.008, 0.008, 0.008, 0.008],
+	[0.004],
 ],
 
 // Pan positions
 panPositions = [
-	[-1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
 ];
 
 r = Routine({
