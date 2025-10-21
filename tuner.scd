@@ -62,57 +62,57 @@ majorSeventh = root * (15/8),
 
 freqs = [ // oscillator frequencies
 	[
-		(root / 2) * rrand(0.9999, 1.0001), // voice 2 (bass root and fifth)
-		(root / 2) * rrand(0.9999, 1.0011),
-		root * rrand(0.999, 1.001),
-		root * rrand(0.999, 1.001),
-		perfectFifth * rrand(0.999, 1.001),
-		perfectFifth * rrand(0.999, 1.001)
+		root
+	],
+	[
+		perfectFifth
+	],
+	[
+		root * 2
+	],
+	[
+		perfectFifth * 2
+	],
+	[
+		minorSeventh * 2
+	],
+	[
+		septimalMinorThird * 4
 	]
 ],
 
 ffreqs = [ // filter frequencies
 	[
-		(root * 4) * rrand(0.999, 1.001), // voice 2 (root and fifth)
-		(root * 4) * rrand(0.999, 1.001),
-		(root * 8) * rrand(0.999, 1.001),
-		(root * 8) * rrand(0.999, 1.001),
-		(perfectFifth * 16) * rrand(0.999, 1.001),
-		(perfectFifth * 16) * rrand(0.999, 1.001)
+		200000
 	]
 ],
 
 // How long to wait until the next chord is played
-waitTimes = [0],
+waitTimes = [10],
 
 // Attack times
 attackTimes = [0.01],
 
 // Sustain times
-sustainTimes = [1230],
+sustainTimes = [9],
 
 // Release times
-releaseTimes = [90],
+releaseTimes = [0.01],
 
 resEnvs = [ // Resonance envelopes
 	[
-		Env([0.0, 1.2, 0.0, 1.3, 0.5], [0.02, 0.02, 1035, 345]), // voice 2 (1380 seconds)
-		Env([0.0, 1.2, 0.0, 1.3, 0.5], [0.02, 0.02, 1035, 345]),
-		Env([0.0, 1.2, 0.0, 1.3, 0.5], [0.02, 0.02, 690, 690]),
-		Env([0.0, 1.2, 0.0, 1.3, 0.5], [0.02, 0.02, 690, 690]),
-		Env([0.0, 1.2, 0.0, 1.15, 0.5], [0.02, 0.02, 135, 1245]),
-		Env([0.0, 1.2, 0.0, 1.15, 0.5], [0.02, 0.02, 134, 1246]),
+		Env([0.1, 9.0, 0.1], [0,0]), // voice 1
 	]
 ],
 
 // Amplitudes
 amplitudes = [
-	[0.1, 0.1, 0.05, 0.05, 0.025, 0.025]
+	[0.05],
 ],
 
 // Pan positions
 panPositions = [
-	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0]
+	[0],
 ];
 
 r = Routine({
@@ -148,4 +148,4 @@ r = Routine({
 )
 
 // Play the routine
-r.play
+r.play  

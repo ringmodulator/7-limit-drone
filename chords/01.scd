@@ -68,7 +68,7 @@ freqs = [ // oscillator frequencies
 		(minorSeventh * 16) * rrand(0.999, 1.001),
 		(minorSeventh * 16) * rrand(0.999, 1.001),
 		(minorSeventh * 16) * rrand(0.999, 1.001)
-	],
+	]
 ],
 
 ffreqs = [ // filter frequencies
@@ -79,7 +79,7 @@ ffreqs = [ // filter frequencies
 		(perfectFifth * 32) * rrand(0.999, 1.001),
 		(root * 32) * rrand(0.999, 1.001),
 		(root * 32) * rrand(0.999, 1.001)
-	],
+	]
 ],
 
 // How long to wait until the next chord is played
@@ -107,11 +107,19 @@ resEnvs = [ // Resonance envelopes
 
 // Amplitudes
 amplitudes = [
-	[0.006],
+	[0.004],
 ],
 
 // Pan positions
 panPositions = [
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
 	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
 ];
 

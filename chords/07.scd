@@ -62,13 +62,13 @@ majorSeventh = root * (15/8),
 
 freqs = [ // oscillator frequencies
 	[
-		(perfectFifth / 2) * rrand(0.9999, 1.0001), // voice 7 (fifth) - this produces a nice beating effect with the previous, but the note is familiar from entering earlier. Reevaluate the sequence of notes.
+		(perfectFifth / 2) * rrand(0.9999, 1.0001), // voice 7 (fifth)
 		(perfectFifth / 2) * rrand(0.9099, 1.0001),
 		perfectFifth * rrand(0.999, 1.001),
 		perfectFifth * rrand(0.999, 1.001),
 		(perfectFifth * 8) * rrand(0.999, 1.001),
 		(perfectFifth * 8) * rrand(0.999, 1.001)
-	],
+	]
 ],
 
 ffreqs = [ // filter frequencies
@@ -79,21 +79,20 @@ ffreqs = [ // filter frequencies
 		(perfectFifth * 8) * rrand(0.999, 1.001),
 		(perfectFifth * 16) * rrand(0.999, 1.001),
 		(perfectFifth * 16) * rrand(0.999, 1.001)
-	],
-
+	]
 ],
 
 // How long to wait until the next chord is played
-waitTimes = [60, 120, 120, 90, 180, 120, 180, 180],
+waitTimes = [0],
 
 // Attack times
-attackTimes = [5],
+attackTimes = [40],
 
 // Sustain times
-sustainTimes = [225],
+sustainTimes = [190],
 
 // Release times
-releaseTimes = [180],
+releaseTimes = [1020, 90, 380, 180, 180, 180, 180, 90, 90],
 
 resEnvs = [ // Resonance envelopes
 	[
@@ -103,17 +102,17 @@ resEnvs = [ // Resonance envelopes
 		Env([0.0, 0.5, 0.0], [210, 200]),
 		Env([0.0, 1.3, 0.0], [130, 280]),
 		Env([0.0, 1.3, 0.0], [130, 280])
-	],
+	]
 ],
 
 // Amplitudes
 amplitudes = [
-	[0.03, 0.03, 0.05, 0.05, 0.002, 0.002],
+	[0.06, 0.06, 0.1, 0.1, 0.004, 0.004]
 ],
 
 // Pan positions
 panPositions = [
-	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0]
 ];
 
 r = Routine({

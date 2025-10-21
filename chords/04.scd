@@ -62,48 +62,47 @@ majorSeventh = root * (15/8),
 
 freqs = [ // oscillator frequencies
 	[
-		(septimalMinorThird) * rrand(0.9999, 1.0001), // voice 4 (septimal minor third)
-		(septimalMinorThird) * rrand(0.9999, 1.0001),
-		(septimalMinorThird * 2) * rrand(0.999, 1.001),
-		(septimalMinorThird * 2) * rrand(0.999, 1.001),
-		(septimalMinorThird * 8) * rrand(0.999, 1.001),
-		(septimalMinorThird * 8) * rrand(0.999, 1.001)
-	],
+		(majorSecond) * rrand(0.9999, 1.0001), // voice 4 (major second)
+		(majorSecond) * rrand(0.9999, 1.0001),
+		(majorSecond * 2) * rrand(0.999, 1.001),
+		(majorSecond * 2) * rrand(0.999, 1.001),
+		(majorSecond * 8) * rrand(0.999, 1.001),
+		(majorSecond * 8) * rrand(0.999, 1.001)
+	]
 ],
 
 ffreqs = [ // filter frequencies
 	[
-		(septimalMinorThird * 4) * rrand(0.999, 1.001), // voice 4 (septimal minor 3rd)
-		(septimalMinorThird * 4) * rrand(0.999, 1.001),
-		(septimalMinorThird * 8) * rrand(0.999, 1.001),
-		(septimalMinorThird * 8) * rrand(0.999, 1.001),
-		(septimalMinorThird * 16) * rrand(0.999, 1.001),
-		(septimalMinorThird * 16) * rrand(0.999, 1.001)
-	],
+		(majorSecond * 4) * rrand(0.999, 1.001), // voice 4 (major second)
+		(majorSecond * 4) * rrand(0.999, 1.001),
+		(majorSecond * 8) * rrand(0.999, 1.001),
+		(majorSecond * 8) * rrand(0.999, 1.001),
+		(majorSecond * 16) * rrand(0.999, 1.001),
+		(majorSecond * 16) * rrand(0.999, 1.001)
+	]
 ],
 
 // How long to wait until the next chord is played
 waitTimes = [0],
 
 // Attack times
-attackTimes = [5],
+attackTimes = [40],
 
 // Sustain times
-sustainTimes = [225],
+sustainTimes = [380],
 
 // Release times
 releaseTimes = [180],
 
 resEnvs = [ // Resonance envelopes
 	[
-		Env([0.0, 1.15, 0.0], [100, 310]), // voice 4
-		Env([0.0, 1.15, 0.0], [310, 100]),
-		Env([0.0, 0.5, 0.0], [200, 210]),
-		Env([0.0, 0.5, 0.0], [210, 200]),
+		Env([0.0, 1.15, 0.0], [150, 450]), // voice 4
+		Env([0.0, 1.15, 0.0], [450, 150]),
+		Env([0.0, 0.5, 0.0], [250, 350]),
+		Env([0.0, 0.5, 0.0], [350, 250]),
 		Env([0.0, 1.3, 0.0], [100, 310]),
 		Env([0.0, 1.3, 0.0], [101, 309])
-	],
-
+	]
 ],
 
 // Amplitudes

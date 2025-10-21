@@ -62,23 +62,23 @@ majorSeventh = root * (15/8),
 
 freqs = [ // oscillator frequencies
 	[
-		(root / 2) * rrand(0.9999, 1.0001), // voice 2 (bass root and fifth)
-		(root / 2) * rrand(0.9999, 1.0011),
-		root * rrand(0.999, 1.001),
-		root * rrand(0.999, 1.001),
-		perfectFifth * rrand(0.999, 1.001),
-		perfectFifth * rrand(0.999, 1.001)
+		(septimalMinorThird * 8) * rrand(0.999, 1.001), // voice 9 (minor 3rd and 7th)
+		(minorSeventh * 8) * rrand(0.999, 1.001),
+		(septimalMinorThird * 4) * rrand(0.999, 1.001),
+		(minorSeventh * 4) * rrand(0.999, 1.001),
+		(septimalMinorThird * 16) * rrand(0.999, 1.001),
+		(minorSeventh * 16) * rrand(0.999, 1.001)
 	]
 ],
 
 ffreqs = [ // filter frequencies
 	[
-		(root * 4) * rrand(0.999, 1.001), // voice 2 (root and fifth)
-		(root * 4) * rrand(0.999, 1.001),
-		(root * 8) * rrand(0.999, 1.001),
-		(root * 8) * rrand(0.999, 1.001),
-		(perfectFifth * 16) * rrand(0.999, 1.001),
-		(perfectFifth * 16) * rrand(0.999, 1.001)
+		septimalMinorThird * rrand(0.999, 1.001), // voice 9 (septimal minor 3rd and 7th)
+		minorSeventh * rrand(0.999, 1.001),
+		(septimalMinorThird * 4) * rrand(0.999, 1.001),
+		(minorSeventh * 4) * rrand(0.999, 1.001),
+		(septimalMinorThird * 8) * rrand(0.999, 1.001),
+		(minorSeventh * 8) * rrand(0.999, 1.001)
 	]
 ],
 
@@ -86,28 +86,28 @@ ffreqs = [ // filter frequencies
 waitTimes = [0],
 
 // Attack times
-attackTimes = [0.01],
+attackTimes = [10],
 
 // Sustain times
-sustainTimes = [1230],
+sustainTimes = [230],
 
 // Release times
 releaseTimes = [90],
 
 resEnvs = [ // Resonance envelopes
 	[
-		Env([0.0, 1.2, 0.0, 1.3, 0.5], [0.02, 0.02, 1035, 345]), // voice 2 (1380 seconds)
-		Env([0.0, 1.2, 0.0, 1.3, 0.5], [0.02, 0.02, 1035, 345]),
-		Env([0.0, 1.2, 0.0, 1.3, 0.5], [0.02, 0.02, 690, 690]),
-		Env([0.0, 1.2, 0.0, 1.3, 0.5], [0.02, 0.02, 690, 690]),
-		Env([0.0, 1.2, 0.0, 1.15, 0.5], [0.02, 0.02, 135, 1245]),
-		Env([0.0, 1.2, 0.0, 1.15, 0.5], [0.02, 0.02, 134, 1246]),
+		Env([0.0, 1.0, 0.0], [400, 110]), // voice 9
+		Env([0.0, 1.0, 0.0], [110, 400]),
+		Env([0.0, 1.0, 0.0], [105, 405]),
+		Env([0.0, 1.0, 0.0], [405, 105]),
+		Env([0.0, 1.0, 0.0], [255, 255]),
+		Env([0.0, 1.0, 0.0], [255, 255])
 	]
 ],
 
 // Amplitudes
 amplitudes = [
-	[0.1, 0.1, 0.05, 0.05, 0.025, 0.025]
+	[0.02, 0.02, 0.025, 0.025, 0.005, 0.005]
 ],
 
 // Pan positions

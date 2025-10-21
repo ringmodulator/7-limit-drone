@@ -68,7 +68,7 @@ freqs = [ // oscillator frequencies
 		perfectFifth * rrand(0.999, 1.001),
 		(root * 8) * rrand(0.999, 1.001),
 		(root * 8) * rrand(0.999, 1.001)
-	],
+	]
 ],
 
 ffreqs = [ // filter frequencies
@@ -79,27 +79,27 @@ ffreqs = [ // filter frequencies
 		(perfectFifth * 4) * rrand(0.999, 1.001),
 		(root * 16) * rrand(0.999, 1.001),
 		(root * 16) * rrand(0.999, 1.001)
-	],
+	]
 ],
 
 // How long to wait until the next chord is played
 waitTimes = [0],
 
 // Attack times
-attackTimes = [5],
+attackTimes = [10],
 
 // Sustain times
-sustainTimes = [225],
+sustainTimes = [380],
 
 // Release times
-releaseTimes = [1020, 90, 180, 180, 180, 180, 180, 90, 90],
+releaseTimes = [380],
 
 resEnvs = [ // Resonance envelopes
 	[
-		Env([0.0, 1.0, 0.0], [100, 310]), // voice 3
-		Env([0.0, 1.0, 0.0], [310, 100]),
-		Env([0.0, 1.0, 0.0], [200, 210]),
-		Env([0.0, 1.0, 0.0], [210, 200]),
+		Env([0.0, 1.0, 0.0], [200, 600]), // voice 3
+		Env([0.0, 1.0, 0.0], [600, 200]),
+		Env([0.0, 1.0, 0.0], [400, 400]),
+		Env([0.0, 1.0, 0.0], [400, 400]),
 		Env([0.0, 1.3, 0.0], [132, 278]),
 		Env([0.0, 1.3, 0.0], [133, 277])
 	],
@@ -107,13 +107,14 @@ resEnvs = [ // Resonance envelopes
 
 // Amplitudes
 amplitudes = [
-	[0.02, 0.02, 0.025, 0.025, 0.005, 0.005],
+	[0.04, 0.04, 0.05, 0.05, 0.01, 0.01],
 ],
 
 // Pan positions
 panPositions = [
-	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
+	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0]
 ];
+
 r = Routine({
 	// loop through the frequency chords in our score
 	freqs.do({|fs, c|
