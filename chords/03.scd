@@ -73,10 +73,10 @@ freqs = [ // oscillator frequencies
 
 ffreqs = [ // filter frequencies
 	[
-		(perfectFifth * 2) * rrand(0.999, 1.001), // voice 3 (fifth and root)
-		(perfectFifth * 2) * rrand(0.999, 1.001),
+		(perfectFifth * 4) * rrand(0.999, 1.001), // voice 3 (fifth and root)
 		(perfectFifth * 4) * rrand(0.999, 1.001),
-		(perfectFifth * 4) * rrand(0.999, 1.001),
+		(perfectFifth * 8) * rrand(0.999, 1.001),
+		(perfectFifth * 8) * rrand(0.999, 1.001),
 		(root * 16) * rrand(0.999, 1.001),
 		(root * 16) * rrand(0.999, 1.001)
 	]
@@ -96,10 +96,10 @@ releaseTimes = [380],
 
 resEnvs = [ // Resonance envelopes
 	[
-		Env([0.0, 1.0, 0.0], [200, 600]), // voice 3
-		Env([0.0, 1.0, 0.0], [600, 200]),
-		Env([0.0, 1.0, 0.0], [400, 400]),
-		Env([0.0, 1.0, 0.0], [400, 400]),
+		Env([0.0, 1.3, 0.0], [200, 600]), // voice 3
+		Env([0.0, 1.3, 0.0], [600, 200]),
+		Env([0.0, 1.3, 0.0], [400, 400]),
+		Env([0.0, 1.3, 0.0], [400, 400]),
 		Env([0.0, 1.3, 0.0], [132, 278]),
 		Env([0.0, 1.3, 0.0], [133, 277])
 	],

@@ -62,23 +62,23 @@ majorSeventh = root * (15/8),
 
 freqs = [ // oscillator frequencies
 	[
-		(root * 16) * rrand(0.999, 1.001), // voice 8 (root)
-		(root * 16) * rrand(0.999, 1.001),
-		(root * 8) * rrand(0.999, 1.001),
-		(root * 8) * rrand(0.999, 1.001),
-		(root * 32) * rrand(0.999, 1.001),
-		(root * 32) * rrand(0.999, 1.001)
-	]
-],
-
-ffreqs = [ // filter frequencies
-	[
 		root * rrand(0.999, 1.001), // voice 8 (root)
 		root * rrand(0.999, 1.001),
 		(root * 4) * rrand(0.999, 1.001),
 		(root * 4) * rrand(0.999, 1.001),
 		(root * 8) * rrand(0.999, 1.001),
 		(root * 8) * rrand(0.999, 1.001)
+	]
+],
+
+ffreqs = [ // filter frequencies
+	[
+		(root * 8) * rrand(0.999, 1.001), // voice 8 (root)
+		(root * 8) * rrand(0.999, 1.001),
+		(root * 16) * rrand(0.999, 1.001),
+		(root * 16) * rrand(0.999, 1.001),
+		(root * 32) * rrand(0.999, 1.001),
+		(root * 32) * rrand(0.999, 1.001)
 	]
 ],
 
@@ -96,10 +96,10 @@ releaseTimes = [90],
 
 resEnvs = [ // Resonance envelopes
 	[
-		Env([0.0, 1.15, 0.0], [105, 405]), // voice 8
-		Env([0.0, 1.15, 0.0], [405, 105]),
-		Env([0.0, 1.0, 0.0], [255, 255]),
-		Env([0.0, 1.0, 0.0], [255, 255]),
+		Env([0.0, 1.3, 0.0], [105, 405]), // voice 8
+		Env([0.0, 1.3, 0.0], [405, 105]),
+		Env([0.0, 1.3, 0.0], [255, 255]),
+		Env([0.0, 1.3, 0.0], [255, 255]),
 		Env([0.0, 1.15, 0.0], [110, 400]),
 		Env([0.0, 1.15, 0.0], [400, 110])
 	]
@@ -107,7 +107,7 @@ resEnvs = [ // Resonance envelopes
 
 // Amplitudes
 amplitudes = [
-	[0.06, 0.06, 0.1, 0.1, 0.01, 0.01]
+	[0.02, 0.02, 0.02, 0.02, 0.005, 0.005]
 ],
 
 // Pan positions
