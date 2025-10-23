@@ -62,23 +62,23 @@ majorSeventh = root * (15/8),
 
 freqs = [ // oscillator frequencies
 	[
-		(septimalMinorThird * 8) * rrand(0.999, 1.001), // voice 9 (minor 3rd and 7th)
-		(minorSeventh * 8) * rrand(0.999, 1.001),
-		(septimalMinorThird * 4) * rrand(0.999, 1.001),
-		(minorSeventh * 4) * rrand(0.999, 1.001),
-		(septimalMinorThird * 16) * rrand(0.999, 1.001),
-		(minorSeventh * 16) * rrand(0.999, 1.001)
-	]
-],
-
-ffreqs = [ // filter frequencies
-	[
 		septimalMinorThird * rrand(0.999, 1.001), // voice 9 (septimal minor 3rd and 7th)
 		minorSeventh * rrand(0.999, 1.001),
 		(septimalMinorThird * 4) * rrand(0.999, 1.001),
 		(minorSeventh * 4) * rrand(0.999, 1.001),
 		(septimalMinorThird * 8) * rrand(0.999, 1.001),
 		(minorSeventh * 8) * rrand(0.999, 1.001)
+	]
+],
+
+ffreqs = [ // filter frequencies
+	[
+		(septimalMinorThird * 8) * rrand(0.999, 1.001), // voice 9 (minor 3rd and 7th)
+		(minorSeventh * 8) * rrand(0.999, 1.001),
+		(septimalMinorThird * 4) * rrand(0.999, 1.001),
+		(minorSeventh * 4) * rrand(0.999, 1.001),
+		(septimalMinorThird * 16) * rrand(0.999, 1.001),
+		(minorSeventh * 16) * rrand(0.999, 1.001)
 	]
 ],
 
@@ -96,12 +96,12 @@ releaseTimes = [90],
 
 resEnvs = [ // Resonance envelopes
 	[
-		Env([0.0, 1.0, 0.0], [400, 110]), // voice 9
-		Env([0.0, 1.0, 0.0], [110, 400]),
-		Env([0.0, 1.0, 0.0], [105, 405]),
-		Env([0.0, 1.0, 0.0], [405, 105]),
-		Env([0.0, 1.0, 0.0], [255, 255]),
-		Env([0.0, 1.0, 0.0], [255, 255])
+		Env([0.0, 1.3, 0.0], [400, 110]), // voice 9
+		Env([0.0, 1.3, 0.0], [110, 400]),
+		Env([0.0, 1.3, 0.0], [105, 405]),
+		Env([0.0, 1.3, 0.0], [405, 105]),
+		Env([0.0, 1.3, 0.0], [255, 255]),
+		Env([0.0, 1.3, 0.0], [255, 255])
 	]
 ],
 
