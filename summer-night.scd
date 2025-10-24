@@ -15,7 +15,8 @@ SynthDef(
 		rel = 10,
 		pan = 0.0
 	|
-	var env = Env.asr(atk, 1, rel, \sine);
+	// var env = Env.asr(atk, 1, rel, \sine);
+	var env = Env(levels: [0.00001, 1, 1, 0.00001], times: [atk, sus, rel], curve: \sine);
 	var snd = LFTri.ar(freq);
 	var maxNodes = 16;
 	var resEnv = Env(
@@ -33,7 +34,7 @@ SynthDef(
 		gate
 	);
 	snd = MoogLadder.ar(in: snd, ffreq: ffreq, res: resEnvGen);
-		snd = snd * EnvGen.kr(env, gate, doneAction: Done.freeSelf) * (amp * 4); // added multiplier for convenience
+	snd = snd * EnvGen.kr(env, gate, doneAction: Done.freeSelf) * (amp * 4); // added multiplier for convenience
 	snd = Pan2.ar(snd, pan);
 	Out.ar(out, snd);
 	}
@@ -325,13 +326,16 @@ panPositions = [
 
 r = Routine({
 	// loop through the frequency chords in our score
+	var time = Date.getDate.rawSeconds;
 	freqs.do({|fs, c|
+		var currentTime = Date.getDate.rawSeconds - time;
 		var synthGroup = Group(s), // create a group to play our synths on
 		ffs = ffreqs.wrapAt(c), // get the ffreqs at the same index as the freqs (wrap if we have more freqs than ffreqs)
 		amps = amplitudes.wrapAt(c), // get note amplitudes
 		res = resEnvs.wrapAt(c), // get resonance envelopes
 		pan = panPositions.wrapAt(c), // get pan positions
 		atk = attackTimes.wrapAt(c), // get attack times
+		sus = sustainTimes.wrapAt(c), // get sustain times
 		rel = releaseTimes.wrapAt(c), // get release times
 		synths = fs.collect({|f, i| // collect all of the frequencies in a given chord. A: Need to understand collect better
 			// play a synth for each frequency.
@@ -342,14 +346,11 @@ r = Routine({
 				\amp, amps.wrapAt(i), // get amplitudes
 				\resInputEnv, res.wrapAt(i), // get resonance envelopes
 				\atk, atk, // get attack times
+				\sus, sus, // get sustain times
 				\rel, rel // get release times
 			], synthGroup); // synthGroup is the target, so each synth will play on the Group we just created
 		});
-		// sustain and release
-		{
-			sustainTimes.wrapAt(c).wait; // Sustain synths for the sustain time
-			synthGroup.release; // Release synths
-		}.fork; // .fork is a shortcut for creating a Routine and playing it immediately.
+		("Voice " ++ (c+1) ++ " start: " ++ currentTime.round ++ " seconds").postln;
 		waitTimes.wrapAt(c).wait; // Wait to play the next note or chord in the score.
 	});
 });
