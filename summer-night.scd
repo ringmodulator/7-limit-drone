@@ -15,8 +15,7 @@ SynthDef(
 		rel = 10,
 		pan = 0.0
 	|
-	// var env = Env.asr(atk, 1, rel, \sine);
-	var env = Env(levels: [0.00001, 1, 1, 0.00001], times: [atk, sus, rel], curve: \exp);
+	var env = Env(levels: [0.00001, 1, 1, 0.00001], times: [atk, sus, rel], curve: [\exp, \lin, \sine]);
 	var snd = LFTri.ar(freq);
 	var maxNodes = 16;
 	var resEnv = Env(
