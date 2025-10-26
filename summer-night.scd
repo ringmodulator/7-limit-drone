@@ -15,7 +15,7 @@ SynthDef(
 		rel = 10,
 		pan = 0.0
 	|
-	var env = Env(levels: [0.00001, 1, 1, 0.00001], times: [atk, sus, rel], curve: [\exp, \lin, \sine]);
+	var env = Env(levels: [0.00001, 1, 1, 0.00001], times: [atk, sus, rel], curve: [4, \lin, \sine]);
 	var snd = LFTri.ar(freq);
 	var maxNodes = 16;
 	var resEnv = Env(
@@ -33,7 +33,7 @@ SynthDef(
 		gate
 	);
 	snd = MoogLadder.ar(in: snd, ffreq: ffreq, res: resEnvGen);
-	snd = snd * EnvGen.kr(env, gate, doneAction: Done.freeSelf) * (amp * 4); // added multiplier for convenience
+	snd = snd * EnvGen.kr(env, gate, doneAction: Done.freeSelf) * (amp * 8); // added volume multiplier for convenience
 	snd = Pan2.ar(snd, pan);
 	Out.ar(out, snd);
 	}
