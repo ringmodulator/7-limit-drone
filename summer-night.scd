@@ -15,7 +15,7 @@ SynthDef(
 		rel = 10,
 		pan = 0.0
 	|
-	var env = Env(levels: [0.00001, 1, 1, 0.00001], times: [atk, sus, rel], curve: [4, \lin, \sine]);
+	var env = Env(levels: [0.00001, 1, 1, 0.00001], times: [atk, sus, rel], curve: [\sine, \lin, \sine]);
 	var snd = LFTri.ar(freq);
 	var maxNodes = 16;
 	var resEnv = Env(
@@ -33,7 +33,7 @@ SynthDef(
 		gate
 	);
 	snd = MoogLadder.ar(in: snd, ffreq: ffreq, res: resEnvGen);
-	snd = snd * EnvGen.kr(env, gate, doneAction: Done.freeSelf) * (amp * 8); // added volume multiplier for convenience
+	snd = snd * EnvGen.kr(env, gate, doneAction: Done.freeSelf) * (amp * 12); // added volume multiplier for convenience
 	snd = Pan2.ar(snd, pan);
 	Out.ar(out, snd);
 	}
@@ -211,7 +211,7 @@ ffreqs = [ // filter frequencies
 ],
 
 // How long to wait until the next chord is played
-waitTimes = [60, 120, 120, 90, 180, 120, 180, 180],
+waitTimes = [60, 120, 120, 90, 180, 120, 120, 180],
 
 // Attack times
 attackTimes = [0.01, 0.01, 40, 40, 40, 40, 80, 80, 40],
@@ -220,7 +220,7 @@ attackTimes = [0.01, 0.01, 40, 40, 40, 40, 80, 80, 40],
 sustainTimes = [59.99, 1229.99, 410, 380, 380, 380, 430, 370, 230],
 
 // Release times
-releaseTimes = [600, 90, 350, 180, 180, 180, 180, 60, 60],
+releaseTimes = [600, 90, 350, 180, 180, 180, 180, 120, 120],
 
 resEnvs = [ // Resonance envelopes
 		[
@@ -305,7 +305,7 @@ amplitudes = [
 	[0.02, 0.02, 0.025, 0.025, 0.005, 0.005],
 	[0.01, 0.01, 0.005, 0.005, 0.005, 0.005],
 	[0.015, 0.015, 0.005, 0.005, 0.005, 0.005],
-	[0.01, 0.01, 0.005, 0.005, 0.005, 0.005],
+	[0.015, 0.015, 0.005, 0.005, 0.005, 0.005],
 	[0.02, 0.02, 0.025, 0.025, 0.005, 0.005],
 	[0.02, 0.02, 0.025, 0.025, 0.005, 0.005]
 ],
@@ -318,7 +318,7 @@ panPositions = [
 	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
 	[-1.0, 1.0, -0.25, 0.25, -1.0, 1.0],
 	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
-	[-1.0, 0.5, -2.5, 2.5, -0.5, 1.0],
+	[-1.0, 0.5, -0.25, 0.25, -0.5, 1.0],
 	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0],
 	[-1.0, 1.0, -1.0, 1.0, -1.0, 1.0]
 ];
