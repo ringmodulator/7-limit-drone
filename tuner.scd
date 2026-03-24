@@ -1,5 +1,7 @@
 s.boot;
 
+// Guitar tuning reference for accompanying `summer-night.scd` with controlled feedback
+
 (
 SynthDef(
 	\drone,
