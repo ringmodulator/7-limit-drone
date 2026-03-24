@@ -1,5 +1,7 @@
 s.boot;
 
+// Drone piece, to be accompanied by controlled guitar feedback
+
 (
 SynthDef(
 	\drone,
